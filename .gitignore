@@ -1,0 +1,8 @@
+.DS_Store
+*.log
+
+# Material interno del cliente — NO se publica en el repo público.
+# Vive solo en la máquina de Oscar.
+docs/
+Cuestionario-Redes-Sociales*.pdf
+.claude/

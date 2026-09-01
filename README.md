@@ -1,0 +1,64 @@
+# MEDICALSPORT — Sport Medical Center
+
+Sitio web de **Sport Medical Center**, clínica de Medicina del Deporte y Rehabilitación Física
+del **Dr. Saúl Arredondo Barragán** en Zitácuaro, Michoacán.
+
+**En vivo:** https://oscararmando2.github.io/MEDICALSPORT/
+
+## Qué es
+
+Landing de una sola página, orientada a conversión por **WhatsApp**. El producto ancla es la
+**plantilla ortopédica personalizada ($1,690)** y la objeción principal a vencer no es el precio,
+sino la indiferencia: la gente normaliza el dolor de pie. Por eso la página abre con conciencia
+del problema antes de ofertar.
+
+## Stack
+
+HTML estático + **Tailwind CSS por CDN** + JavaScript vanilla. **Sin paso de build**: se edita
+`index.html` y se despliega tal cual. Fuentes de Google (Barlow Condensed + Barlow).
+
+## Estructura
+
+```
+index.html          # todo el sitio (estilos, contenido y JS inline)
+assets/favicon.svg  # isotipo del logo
+docs/               # brief e identidad visual — NO versionado (ver .gitignore)
+```
+
+## Secciones
+
+1. Hero — el gancho + estado abierto/cerrado en vivo + CTA WhatsApp
+2. El error — conciencia del problema y señales de alerta
+3. Servicios — plantillas (dominante), rehabilitación, control de peso
+4. Plantillas — dos tipos, proceso de 4 pasos, qué traer al estudio
+5. Precios — transparentes, consulta destacada como entrada
+6. El doctor — credibilidad
+7. Preguntas frecuentes — las dudas reales que recibe la clínica
+8. Ubicación y horarios — tabla con el día de hoy resaltado
+9. CTA final + footer
+
+## Convenciones
+
+- **Paleta monocromática azul** tomada del logo. El verde aparece *únicamente* en el botón de
+  WhatsApp (color de plataforma, no de marca).
+- Tipografía: `Barlow Condensed` para titulares, `Barlow` para cuerpo. Nunca Inter/Poppins/Montserrat.
+- Tokens CSS en `:root`. Nada de hex sueltos en los componentes.
+- Iconos **SVG en línea**, nunca emojis.
+- `prefers-reduced-motion` respetado en cada animación.
+- Sin scroll horizontal (`overflow-x:clip`).
+- Todo el texto en español. La clínica es local; no hay versión en inglés.
+- **Cuidado con las afirmaciones médicas**: nada de promesas de curación, garantías ni
+  testimonios inventados. El disclaimer del footer se queda.
+
+## Despliegue
+
+GitHub Pages desde `main`. Un push a `main` publica; ojo con la caché del navegador
+(Cmd+Shift+R).
+
+## Pendientes
+
+- Foto real del Dr. Saúl (hoy hay un marcador circular con el isotipo)
+- Logo en vector para reemplazar el SVG reconstruido
+- Imagen OG (`assets/og-smc-v1.png`) — referenciada en los metadatos, aún no existe
+- Confirmar colonia y CP para el mapa y el perfil de Google
+- Testimonios reales (el cuestionario no los trae; no se inventan)

@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Sport Medical Center | Plantillas ortopédicas y rehabilitación en Zitácuaro</title>
+<meta name="description" content="Plantillas ortopédicas personalizadas, rehabilitación física y control de peso con respaldo médico. Dr. Saúl Arredondo Barragán, especialista en Medicina del Deporte. Zitácuaro." />
+<meta name="theme-color" content="#0B2A6B" />
+<link rel="canonical" href="https://oscararmando2.github.io/MEDICALSPORT/" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Sport Medical Center" />
+<meta property="og:title" content="Sport Medical Center | El dolor no se quita solo" />
+<meta property="og:description" content="Plantillas ortopédicas personalizadas, rehabilitación física y control de peso con respaldo médico en Zitácuaro." />
+<meta property="og:url" content="https://oscararmando2.github.io/MEDICALSPORT/" />
+<meta property="og:image" content="https://oscararmando2.github.io/MEDICALSPORT/assets/og-smc-v1.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+/* ============================================================
+   SPORT MEDICAL CENTER — tokens
+   Paleta monocromática azul tomada del logo. El verde aparece
+   ÚNICAMENTE en el botón de WhatsApp (color de plataforma, no de marca).
+   ============================================================ */
+:root{
+  --azul-900:#0B2A6B;
+  --azul-800:#14357F;
+  --azul:#1F3A93;       /* azul de marca — círculo del logo */
+  --azul-600:#2450C8;
+  --azul-500:#2E63E8;
+  --azul-300:#8FB0F7;
+  --azul-100:#DEE8FC;
+  --hueso:#F5F8FD;
+  --blanco:#FFFFFF;
+  --tinta:#0D1526;
+  --gris:#54617A;
+  --linea:rgba(13,21,38,.10);
+  --linea-clara:rgba(255,255,255,.16);
+  --wa:#25D366;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --r:18px;
+  color-scheme: light;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth; overflow-x:clip}
+@media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} }
+body{
+  margin:0; overflow-x:clip;
+  font-family:'Barlow',system-ui,sans-serif;
+  background:var(--blanco); color:var(--tinta);
+  font-size:17px; line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  -webkit-tap-highlight-color:transparent;
+}
+a{color:inherit;text-decoration:none}
+img,svg{max-width:100%}
+h1,h2,h3,.display{font-family:'Barlow Condensed',system-ui,sans-serif;line-height:.95;letter-spacing:-.005em;margin:0}
+.eyebrow{font-family:'Barlow',sans-serif;font-weight:600;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase}
+.wrap{width:100%;max-width:1180px;margin-inline:auto;padding-inline:22px}
+section{position:relative}
+
+/* foco visible en todo */
+a:focus-visible,button:focus-visible,summary:focus-visible{
+  outline:3px solid var(--azul-500); outline-offset:3px; border-radius:6px;
+}
+
+/* ---------- reveals ---------- */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rv.on{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){ .rv{opacity:1!important;transform:none!important;transition:none} }
+
+/* ---------- nav ---------- */
+.nav{position:fixed;inset:0 0 auto 0;z-index:80;transform:translateY(-102%);transition:transform .4s var(--ease);
+  background:rgba(255,255,255,.92);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--linea)}
+.nav.on{transform:none}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:10px 22px;max-width:1180px;margin-inline:auto}
+.nav-links{display:none;gap:26px;font-weight:600;font-size:.9rem}
+.nav-links a{color:var(--gris);transition:color .2s}
+.nav-links a:hover{color:var(--azul)}
+@media(min-width:940px){.nav-links{display:flex}}
+
+/* ---------- botones ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  min-height:52px;padding:0 28px;border-radius:999px;cursor:pointer;
+  font-weight:700;font-size:1rem;letter-spacing:.01em;border:2px solid transparent;
+  transition:transform .22s var(--ease),background .22s,color .22s,border-color .22s,box-shadow .22s}
+.btn:hover{transform:translateY(-2px)}
+.btn-wa{background:var(--wa);color:#04301A;box-shadow:0 10px 26px rgba(37,211,102,.34)}
+.btn-wa:hover{background:#1FBE5B}
+.btn-solid{background:var(--azul);color:#fff;box-shadow:0 10px 26px rgba(31,58,147,.28)}
+.btn-solid:hover{background:var(--azul-800)}
+.btn-ghost{border-color:var(--linea-clara);color:#fff}
+.btn-ghost:hover{background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.4)}
+.btn-line{border-color:var(--azul);color:var(--azul)}
+.btn-line:hover{background:var(--azul);color:#fff}
+.btn-sm{min-height:44px;padding:0 20px;font-size:.92rem}
+
+/* ---------- hero ---------- */
+.hero{min-height:100svh;display:flex;align-items:center;padding:120px 0 70px;
+  background:
+    radial-gradient(1100px 620px at 78% 8%, rgba(46,99,232,.55), transparent 62%),
+    radial-gradient(760px 520px at 8% 96%, rgba(20,53,127,.75), transparent 60%),
+    linear-gradient(168deg,var(--azul-900) 0%,#0A2058 58%,#081A46 100%);
+  color:#fff;overflow:hidden}
+.hero-grid{position:absolute;inset:0;opacity:.16;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.10) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.10) 1px,transparent 1px);
+  background-size:70px 70px;
+  mask-image:radial-gradient(circle at 50% 40%,#000 30%,transparent 78%);
+  -webkit-mask-image:radial-gradient(circle at 50% 40%,#000 30%,transparent 78%)}
+.hero h1{font-size:clamp(3.3rem,12.5vw,7.4rem);font-weight:700;text-transform:uppercase}
+.hero h1 em{font-style:normal;display:block;color:var(--azul-300)}
+.hero-sub{max-width:52ch;color:rgba(255,255,255,.80);font-size:clamp(1.02rem,2.4vw,1.2rem)}
+
+/* píldora de estado abierto/cerrado */
+.pill{display:inline-flex;align-items:center;gap:9px;padding:7px 16px 7px 12px;border-radius:999px;
+  background:rgba(255,255,255,.09);border:1px solid var(--linea-clara);
+  font-size:.8rem;font-weight:600;letter-spacing:.03em}
+.dot{width:9px;height:9px;border-radius:50%;background:#37D67A;box-shadow:0 0 0 0 rgba(55,214,122,.7);animation:lat 2.2s infinite}
+.dot.off{background:#FF7A5C;animation:none;box-shadow:none}
+@keyframes lat{70%{box-shadow:0 0 0 11px rgba(55,214,122,0)}100%{box-shadow:0 0 0 0 rgba(55,214,122,0)}}
+@media (prefers-reduced-motion:reduce){ .dot{animation:none} }
+
+/* electro — el motivo gráfico del propio logo */
+.ecg{width:100%;height:auto;display:block}
+.ecg path{stroke:var(--azul-300);stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:1400;stroke-dashoffset:1400;animation:trazo 4.6s linear infinite}
+@keyframes trazo{to{stroke-dashoffset:-1400}}
+@media (prefers-reduced-motion:reduce){ .ecg path{animation:none;stroke-dashoffset:0} }
+
+/* tarjeta gancho flotante del hero */
+.gancho{background:rgba(255,255,255,.07);border:1px solid var(--linea-clara);border-radius:var(--r);
+  padding:20px 22px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);max-width:400px}
+
+/* ---------- señales (bloque del error) ---------- */
+.senal{display:flex;gap:16px;align-items:flex-start;padding:18px 0;border-bottom:1px solid var(--linea)}
+.senal:last-child{border-bottom:0}
+.senal-n{flex:0 0 auto;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;
+  background:var(--azul-100);color:var(--azul);font-weight:700;font-size:.86rem}
+.caja-azul{background:var(--azul);color:#fff;border-radius:var(--r);padding:26px 28px}
+
+/* ---------- servicios ---------- */
+.svc{border:1px solid var(--linea);border-radius:var(--r);padding:30px 26px;background:var(--blanco);
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s}
+.svc:hover{transform:translateY(-5px);box-shadow:0 18px 44px rgba(13,21,38,.10);border-color:var(--azul-300)}
+.svc-ancla{background:linear-gradient(158deg,var(--azul) 0%,var(--azul-900) 100%);color:#fff;border-color:transparent;
+  box-shadow:0 20px 50px rgba(31,58,147,.30)}
+.svc-ancla:hover{box-shadow:0 26px 62px rgba(31,58,147,.40)}
+.svc-ico{width:56px;height:56px;stroke-width:1.5;fill:none;stroke:var(--azul)}
+.svc-ancla .svc-ico{stroke:#fff}
+.tag{display:inline-block;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.16);
+  font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+
+/* ---------- proceso de plantillas: pasos en diagonal ---------- */
+.pasos{display:grid;gap:14px}
+@media(min-width:860px){.pasos{grid-template-columns:repeat(4,1fr);gap:18px}}
+.paso{position:relative;padding:24px 20px;border-radius:var(--r);background:var(--hueso);border:1px solid var(--linea)}
+@media(min-width:860px){
+  .pasos{margin-bottom:60px}
+  .paso:nth-child(2){transform:translateY(20px)}
+  .paso:nth-child(3){transform:translateY(40px)}
+  .paso:nth-child(4){transform:translateY(60px)}
+}
+.paso-n{font-family:'Barlow Condensed',sans-serif;font-size:2.6rem;font-weight:700;color:var(--azul-300);line-height:1}
+
+/* huella con zonas de presión */
+.huella{filter:drop-shadow(0 16px 34px rgba(31,58,147,.22))}
+.zona{transform-box:fill-box;transform-origin:center;animation:zpulse 3.4s var(--ease) infinite}
+.zona:nth-child(4){animation-delay:.55s}
+.zona:nth-child(5){animation-delay:1.1s}
+@keyframes zpulse{0%,100%{opacity:.30}50%{opacity:.85}}
+@media (prefers-reduced-motion:reduce){ .zona{animation:none;opacity:.6} }
+
+/* ---------- precios ---------- */
+.precio{border:1px solid var(--linea);border-radius:var(--r);padding:26px 24px;background:#fff;
+  display:flex;flex-direction:column;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.precio:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(13,21,38,.09)}
+.precio-destacado{border:2px solid var(--azul);box-shadow:0 18px 46px rgba(31,58,147,.16)}
+.precio-cifra{font-family:'Barlow Condensed',sans-serif;font-size:3.2rem;font-weight:700;line-height:1;color:var(--azul)}
+.badge{position:absolute;top:-13px;left:24px;background:var(--azul);color:#fff;
+  padding:5px 14px;border-radius:999px;font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+
+/* ---------- FAQ ---------- */
+.faq{border-bottom:1px solid var(--linea)}
+.faq summary{cursor:pointer;list-style:none;padding:22px 44px 22px 0;position:relative;
+  font-family:'Barlow Condensed',sans-serif;font-size:1.5rem;font-weight:600;line-height:1.15}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";position:absolute;right:6px;top:50%;width:14px;height:14px;
+  border-right:2.5px solid var(--azul);border-bottom:2.5px solid var(--azul);
+  transform:translateY(-70%) rotate(45deg);transition:transform .3s var(--ease)}
+.faq[open] summary::after{transform:translateY(-30%) rotate(-135deg)}
+.faq-body{padding:0 0 22px;color:var(--gris);max-width:70ch}
+
+/* ---------- WhatsApp flotante ---------- */
+.wa-float{position:fixed;right:18px;bottom:18px;z-index:90;width:60px;height:60px;border-radius:50%;
+  background:var(--wa);display:grid;place-items:center;box-shadow:0 12px 30px rgba(37,211,102,.42);
+  transition:transform .25s var(--ease)}
+.wa-float:hover{transform:scale(1.08)}
+@supports(padding:max(0px)){ .wa-float{bottom:max(18px,env(safe-area-inset-bottom))} }
+
+.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+</style>
+</head>
+<body>
+
+<a href="#contenido" class="sr">Saltar al contenido</a>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="nav-in">
+    <a href="#top" aria-label="Sport Medical Center — inicio" style="display:flex;align-items:center;gap:10px">
+      <svg width="34" height="34" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50" fill="#1F3A93"/><g stroke="#fff" stroke-width="7.5" stroke-linecap="round" fill="none"><circle cx="58" cy="27" r="7" fill="#fff" stroke="none"/><path d="M55 42 L46 58"/><path d="M62 40 L74 47"/><path d="M55 43 L38 38"/><path d="M46 58 L37 76"/><path d="M46 58 L62 70"/></g></svg>
+      <span class="display" style="font-weight:700;font-size:1.16rem;letter-spacing:.01em">SPORT<span class="wm-sec" style="color:var(--gris);font-weight:600"> MEDICAL CENTER</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Principal">
+      <a href="#servicios">Servicios</a>
+      <a href="#plantillas">Plantillas</a>
+      <a href="#precios">Precios</a>
+      <a href="#doctor">El doctor</a>
+      <a href="#ubicacion">Ubicación</a>
+    </nav>
+    <a class="btn btn-wa btn-sm" href="https://wa.me/527151431105?text=Hola%2C%20quiero%20agendar%20una%20cita%20en%20Sport%20Medical%20Center." target="_blank" rel="noopener">Agendar cita</a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="wrap" style="position:relative;z-index:2">
+    <div style="display:grid;gap:44px;align-items:center" class="hero-cols">
+
+      <div>
+        <div class="rv" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:26px">
+          <span class="pill"><span class="dot" id="dot"></span><span id="estado">Consultando horario…</span></span>
+          <span class="eyebrow" style="color:var(--azul-300)">Zitácuaro, Michoacán</span>
+        </div>
+
+        <h1 class="rv">El dolor <em>no se quita solo.</em></h1>
+
+        <p class="hero-sub rv" style="margin:26px 0 0">
+          Rehabilitación física, plantillas ortopédicas personalizadas y control de peso,
+          con el respaldo de un médico especialista en Medicina del Deporte.
+        </p>
+
+        <div class="rv" style="display:flex;flex-wrap:wrap;gap:13px;margin-top:34px">
+          <a class="btn btn-wa" href="https://wa.me/527151431105?text=Hola%2C%20quiero%20agendar%20una%20valoraci%C3%B3n%20en%20Sport%20Medical%20Center." target="_blank" rel="noopener">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35z"/><path d="M12.04 2C6.55 2 2.1 6.45 2.1 11.94c0 1.76.46 3.48 1.34 5L2 22l5.2-1.36a9.9 9.9 0 0 0 4.84 1.24h.01c5.48 0 9.94-4.45 9.94-9.94A9.87 9.87 0 0 0 12.04 2zm0 18.13h-.01a8.25 8.25 0 0 1-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.22 8.22 0 0 1-1.26-4.38c0-4.55 3.71-8.26 8.27-8.26 2.21 0 4.28.86 5.84 2.42a8.2 8.2 0 0 1 2.42 5.85c0 4.56-3.71 8.26-8.27 8.26z"/></svg>
+            Agendar por WhatsApp
+          </a>
+          <a class="btn btn-ghost" href="#precios">Ver precios</a>
+        </div>
+
+        <div class="gancho rv" style="margin-top:34px">
+          <div class="eyebrow" style="color:var(--azul-300);margin-bottom:8px">Empieza aquí</div>
+          <p style="margin:0;color:rgba(255,255,255,.9)">
+            <strong style="font-size:1.35rem;font-family:'Barlow Condensed',sans-serif">Consulta $500</strong><br>
+            Incluye tu primera sesión de terapia.
+          </p>
+        </div>
+      </div>
+
+      <div class="rv" aria-hidden="true" style="width:100%">
+        <svg class="ecg" viewBox="0 0 700 200" preserveAspectRatio="xMidYMid meet" role="presentation">
+          <path d="M0,100 L150,100 L172,100 L186,52 L200,150 L214,74 L228,100 L350,100 L372,100 L386,52 L400,150 L414,74 L428,100 L700,100"/>
+        </svg>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ EL ERROR (problema) ============ -->
+<section id="contenido" style="padding:clamp(72px,11vw,124px) 0;background:var(--blanco)">
+  <div class="wrap">
+    <div style="display:grid;gap:52px" class="err-cols">
+
+      <div>
+        <div class="eyebrow rv" style="color:var(--azul)">El error más peligroso</div>
+        <h2 class="rv" style="font-size:clamp(2.6rem,7vw,4.6rem);font-weight:700;text-transform:uppercase;margin-top:14px">
+          Esperar a que<br><span style="color:var(--azul)">se quite solo.</span>
+        </h2>
+        <div class="caja-azul rv" style="margin-top:30px;max-width:480px">
+          <p style="margin:0;font-size:1.22rem;font-weight:500">Tu cuerpo no miente, te está avisando.</p>
+        </div>
+        <p class="rv" style="color:var(--gris);margin-top:26px;max-width:48ch">
+          El dolor de pie es tan común que la mayoría deja de darle importancia. Se acostumbra.
+          Pero una pisada mal alineada no se corrige sola: sigue cargando la rodilla, la cadera y la espalda
+          todos los días, en cada paso.
+        </p>
+      </div>
+
+      <div class="rv">
+        <div class="eyebrow" style="color:var(--gris);margin-bottom:6px">Señales que no hay que dejar pasar</div>
+        <div class="senal"><span class="senal-n">01</span><p style="margin:0">Duele el primer paso de la mañana, al bajarte de la cama.</p></div>
+        <div class="senal"><span class="senal-n">02</span><p style="margin:0">Tus pies se cansan rápido, aunque el día haya sido normal.</p></div>
+        <div class="senal"><span class="senal-n">03</span><p style="margin:0">Se te desgasta siempre el mismo lado de la suela del zapato.</p></div>
+        <div class="senal"><span class="senal-n">04</span><p style="margin:0">Molestia en rodilla, cadera o espalda baja sin una causa clara.</p></div>
+        <div class="senal"><span class="senal-n">05</span><p style="margin:0">Vuelve el mismo dolor cada vez que retomas el ejercicio.</p></div>
+        <div style="margin-top:26px">
+          <a class="btn btn-line" href="https://wa.me/527151431105?text=Hola%2C%20tengo%20molestias%20y%20quiero%20una%20valoraci%C3%B3n." target="_blank" rel="noopener">Quiero una valoración</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICIOS ============ -->
+<section id="servicios" style="padding:clamp(72px,11vw,124px) 0;background:var(--hueso)">
+  <div class="wrap">
+    <div class="rv" style="max-width:60ch;margin-bottom:48px">
+      <div class="eyebrow" style="color:var(--azul)">Servicios</div>
+      <h2 style="font-size:clamp(2.3rem,6vw,3.7rem);font-weight:700;margin-top:12px">
+        Tres formas de volver a moverte sin dolor
+      </h2>
+    </div>
+
+    <div style="display:grid;gap:22px" class="svc-grid">
+
+      <!-- ancla: plantillas, visualmente dominante -->
+      <article class="svc svc-ancla rv" style="grid-area:ancla">
+        <span class="tag">Lo más solicitado</span>
+        <svg class="svc-ico" viewBox="0 0 64 64" aria-hidden="true" style="margin:22px 0 18px">
+          <path d="M20 8c6 0 10 6 10 14 0 9-4 14-4 22 0 7-3 12-9 12s-9-5-9-12c0-9 3-14 3-24C11 13 14 8 20 8z"/>
+          <path d="M12 44c8-3 18-3 26 0 7 3 13 3 18 0"/>
+          <circle cx="40" cy="16" r="3"/><circle cx="47" cy="20" r="3"/><circle cx="52" cy="26" r="3"/>
+        </svg>
+        <h3 style="font-size:2rem;font-weight:700">Plantillas ortopédicas personalizadas</h3>
+        <p style="margin:12px 0 0;color:rgba(255,255,255,.82)">
+          Hechas a partir de un estudio de tu pisada, no de una talla genérica.
+          Dos tipos: <strong>deportiva</strong> y de <strong>uso diario</strong>.
+        </p>
+        <div style="margin-top:22px;display:flex;align-items:baseline;gap:10px">
+          <span class="display" style="font-size:2.6rem;font-weight:700">$1,690</span>
+          <span style="color:rgba(255,255,255,.7);font-size:.92rem">el par</span>
+        </div>
+        <a href="#plantillas" class="btn btn-ghost btn-sm" style="margin-top:20px;align-self:flex-start">Cómo funciona</a>
+      </article>
+
+      <article class="svc rv" style="grid-area:reha">
+        <svg class="svc-ico" viewBox="0 0 64 64" aria-hidden="true">
+          <path d="M4 44h56"/><path d="M10 44V34a6 6 0 0 1 6-6h30a6 6 0 0 1 6 6v10"/>
+          <circle cx="22" cy="18" r="6"/><path d="M30 26c4-4 9-4 13 0"/>
+        </svg>
+        <h3 style="font-size:1.7rem;font-weight:700;margin-top:16px">Rehabilitación física</h3>
+        <p style="margin:10px 0 0;color:var(--gris)">
+          Terapia dirigida para recuperar movilidad y reducir el dolor tras una lesión,
+          una cirugía o una molestia que ya se hizo crónica.
+        </p>
+        <p style="margin-top:16px;font-weight:600;color:var(--azul)">Sesión $300</p>
+      </article>
+
+      <article class="svc rv" style="grid-area:peso">
+        <svg class="svc-ico" viewBox="0 0 64 64" aria-hidden="true">
+          <rect x="8" y="12" width="48" height="40" rx="7"/>
+          <path d="M32 22v10"/><path d="M22 36a10 10 0 0 1 20 0"/>
+        </svg>
+        <h3 style="font-size:1.7rem;font-weight:700;margin-top:16px">Control de peso</h3>
+        <p style="margin:10px 0 0;color:var(--gris)">
+          Programa de 5 semanas con seguimiento médico. Menos carga sobre tus
+          articulaciones es menos dolor al caminar.
+        </p>
+        <p style="margin-top:16px;font-weight:600;color:var(--azul)">$1,500 · 5 semanas</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ PLANTILLAS (producto ancla) ============ -->
+<section id="plantillas" style="padding:clamp(72px,11vw,124px) 0;background:var(--blanco);overflow:hidden">
+  <div class="wrap">
+
+    <div style="display:grid;gap:48px;align-items:center" class="pla-cols">
+      <div class="rv">
+        <div class="eyebrow" style="color:var(--azul)">Plantillas ortopédicas</div>
+        <h2 style="font-size:clamp(2.3rem,6vw,3.9rem);font-weight:700;margin-top:12px">
+          Tu pisada es tuya.<br>Tu plantilla también.
+        </h2>
+        <p style="color:var(--gris);margin-top:20px;max-width:50ch">
+          No es una plantilla de mostrador. Se hace después de un estudio de tu pisada
+          y se fabrica para tu pie, tu peso y la actividad que realmente haces.
+        </p>
+
+        <div style="display:grid;gap:14px;margin-top:28px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr))">
+          <div style="border:1px solid var(--linea);border-radius:14px;padding:18px">
+            <div class="eyebrow" style="color:var(--azul)">Tipo 01</div>
+            <p style="margin:6px 0 0;font-weight:600;font-size:1.1rem">Deportiva</p>
+            <p style="margin:4px 0 0;color:var(--gris);font-size:.94rem">Para entrenar, correr o competir.</p>
+          </div>
+          <div style="border:1px solid var(--linea);border-radius:14px;padding:18px">
+            <div class="eyebrow" style="color:var(--azul)">Tipo 02</div>
+            <p style="margin:6px 0 0;font-weight:600;font-size:1.1rem">Uso diario</p>
+            <p style="margin:4px 0 0;color:var(--gris);font-size:.94rem">Para trabajar y estar de pie todo el día.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- huella con zonas de presión -->
+      <div class="rv" aria-hidden="true" style="display:grid;place-items:center">
+        <svg class="huella" width="250" height="380" viewBox="0 0 220 336" role="presentation">
+          <defs><linearGradient id="gp" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#2E63E8"/><stop offset="100%" stop-color="#0B2A6B"/>
+          </linearGradient></defs>
+          <g fill="url(#gp)" opacity=".14">
+            <path d="M110 86c34 0 50 24 48 54-2 26-12 42-12 64s14 40 12 62c-3 28-22 42-46 42s-42-14-44-42c-2-24 10-40 10-64s-12-38-14-62c-2-30 12-54 46-54z"/>
+            <ellipse cx="80" cy="62" rx="18" ry="20"/><ellipse cx="112" cy="58" rx="12.5" ry="14"/>
+            <ellipse cx="134" cy="62" rx="11" ry="12"/><ellipse cx="151" cy="70" rx="9.5" ry="10.5"/>
+            <ellipse cx="164" cy="81" rx="8" ry="9"/>
+          </g>
+          <g fill="none" stroke="url(#gp)" stroke-width="2.6">
+            <path d="M110 86c34 0 50 24 48 54-2 26-12 42-12 64s14 40 12 62c-3 28-22 42-46 42s-42-14-44-42c-2-24 10-40 10-64s-12-38-14-62c-2-30 12-54 46-54z"/>
+            <ellipse cx="80" cy="62" rx="18" ry="20"/><ellipse cx="112" cy="58" rx="12.5" ry="14"/>
+            <ellipse cx="134" cy="62" rx="11" ry="12"/><ellipse cx="151" cy="70" rx="9.5" ry="10.5"/>
+            <ellipse cx="164" cy="81" rx="8" ry="9"/>
+          </g>
+          <ellipse class="zona" cx="110" cy="116" rx="40" ry="24" fill="#2E63E8"/>
+          <ellipse class="zona" cx="140" cy="184" rx="17" ry="28" fill="#2E63E8"/>
+          <ellipse class="zona" cx="112" cy="266" rx="36" ry="32" fill="#2E63E8"/>
+        </svg>
+        <p style="color:var(--gris);font-size:.86rem;margin-top:8px">Zonas de carga que evalúa el estudio</p>
+      </div>
+    </div>
+
+    <!-- proceso -->
+    <div style="margin-top:clamp(56px,8vw,92px)">
+      <div class="rv" style="margin-bottom:34px">
+        <div class="eyebrow" style="color:var(--azul)">Cómo es el proceso</div>
+        <h3 style="font-size:clamp(1.9rem,4.6vw,2.8rem);font-weight:700;margin-top:10px">De la valoración a tu par, en 10–12 días</h3>
+      </div>
+      <div class="pasos">
+        <div class="paso rv"><div class="paso-n">01</div><p style="font-weight:600;margin:10px 0 4px">Estudio de pisada</p><p style="margin:0;color:var(--gris);font-size:.95rem">Se evalúa cómo apoyas, cómo caminas y dónde se concentra la carga.</p></div>
+        <div class="paso rv"><div class="paso-n">02</div><p style="font-weight:600;margin:10px 0 4px">Diseño</p><p style="margin:0;color:var(--gris);font-size:.95rem">Se define la corrección según tu pie, tu peso y tu actividad.</p></div>
+        <div class="paso rv"><div class="paso-n">03</div><p style="font-weight:600;margin:10px 0 4px">Fabricación</p><p style="margin:0;color:var(--gris);font-size:.95rem">Tu par se elabora a la medida. Toma entre 10 y 12 días.</p></div>
+        <div class="paso rv"><div class="paso-n">04</div><p style="font-weight:600;margin:10px 0 4px">Entrega y ajuste</p><p style="margin:0;color:var(--gris);font-size:.95rem">Se revisa que queden bien. Se recomienda renovarlas cada año.</p></div>
+      </div>
+    </div>
+
+    <!-- qué llevar: resuelve la duda #1 -->
+    <div class="caja-azul rv" style="margin-top:clamp(76px,10vw,120px);display:grid;gap:26px" id="que-llevar">
+      <div>
+        <div class="eyebrow" style="color:var(--azul-300)">Antes de venir</div>
+        <h3 style="font-size:clamp(1.8rem,4.4vw,2.5rem);font-weight:700;margin-top:10px">Qué necesitas traer a tu estudio</h3>
+      </div>
+      <div style="display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))">
+        <div style="display:flex;gap:14px;align-items:flex-start">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8FB0F7" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" style="flex:0 0 auto"><path d="M12 2 8 5 4 4v7l3 1v8h10v-8l3-1V4l-4 1-4-3z"/></svg>
+          <p style="margin:0"><strong>Ropa arriba de la rodilla.</strong><br><span style="color:rgba(255,255,255,.75)">Short o pants que se puedan subir: hay que ver la pierna completa.</span></p>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8FB0F7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:0 0 auto"><path d="M2 17h20v3H2z"/><path d="M3 17V9l4-2 3 3h5l5 4v3"/></svg>
+          <p style="margin:0"><strong>El calzado que más usas.</strong><br><span style="color:rgba(255,255,255,.75)">El desgaste de tu suela dice mucho de cómo pisas.</span></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ PRECIOS ============ -->
+<section id="precios" style="padding:clamp(72px,11vw,124px) 0;background:var(--hueso)">
+  <div class="wrap">
+    <div class="rv" style="max-width:56ch;margin-bottom:52px">
+      <div class="eyebrow" style="color:var(--azul)">Precios</div>
+      <h2 style="font-size:clamp(2.3rem,6vw,3.7rem);font-weight:700;margin-top:12px">Claros, desde el primer mensaje</h2>
+      <p style="color:var(--gris);margin-top:14px">Sin letras chiquitas. Lo que cuesta cada cosa, así de simple.</p>
+    </div>
+
+    <div style="display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(248px,1fr))">
+
+      <div class="precio precio-destacado rv" style="position:relative">
+        <span class="badge">Empieza aquí</span>
+        <p style="margin:0;font-weight:600;font-size:1.16rem">Consulta</p>
+        <div class="precio-cifra" style="margin:10px 0 8px">$500</div>
+        <p style="margin:0;color:var(--gris);flex:1">Valoración médica completa. <strong style="color:var(--tinta)">Incluye tu primera sesión de terapia.</strong></p>
+        <a class="btn btn-solid btn-sm" style="margin-top:20px" href="https://wa.me/527151431105?text=Hola%2C%20quiero%20agendar%20una%20consulta%20de%20%24500." target="_blank" rel="noopener">Agendar</a>
+      </div>
+
+      <div class="precio rv">
+        <p style="margin:0;font-weight:600;font-size:1.16rem">Terapia</p>
+        <div class="precio-cifra" style="margin:10px 0 8px">$300</div>
+        <p style="margin:0;color:var(--gris);flex:1">Por sesión de rehabilitación física, después de la valoración inicial.</p>
+      </div>
+
+      <div class="precio rv">
+        <p style="margin:0;font-weight:600;font-size:1.16rem">Plantillas ortopédicas</p>
+        <div class="precio-cifra" style="margin:10px 0 8px">$1,690</div>
+        <p style="margin:0;color:var(--gris);flex:1">El par, personalizadas a partir de tu estudio de pisada. Deportiva o de uso diario.</p>
+      </div>
+
+      <div class="precio rv">
+        <p style="margin:0;font-weight:600;font-size:1.16rem">Control de peso</p>
+        <div class="precio-cifra" style="margin:10px 0 8px">$1,500</div>
+        <p style="margin:0;color:var(--gris);flex:1">Programa de 5 semanas con seguimiento médico.</p>
+      </div>
+
+    </div>
+    <p class="rv" style="color:var(--gris);font-size:.9rem;margin-top:26px">
+      Los precios pueden variar según la valoración de cada paciente. Confírmalos por WhatsApp antes de tu cita.
+    </p>
+  </div>
+</section>
+
+<!-- ============ EL DOCTOR ============ -->
+<section id="doctor" style="padding:clamp(72px,11vw,124px) 0;background:var(--azul-900);color:#fff;overflow:hidden">
+  <div class="wrap">
+    <div style="display:grid;gap:48px;align-items:center" class="doc-cols">
+
+      <div class="rv" style="display:grid;place-items:center" aria-hidden="true">
+        <!-- Retrato pendiente: sustituir por foto real del Dr. cuando la envíe -->
+        <div style="position:relative;width:250px;height:250px">
+          <div style="position:absolute;inset:0;border-radius:50%;border:1px solid rgba(143,176,247,.35)"></div>
+          <div style="position:absolute;inset:22px;border-radius:50%;border:1px solid rgba(143,176,247,.22)"></div>
+          <div style="position:absolute;inset:44px;border-radius:50%;background:linear-gradient(155deg,var(--azul-600),var(--azul-900));display:grid;place-items:center;box-shadow:0 20px 50px rgba(0,0,0,.35)">
+            <svg width="94" height="94" viewBox="0 0 100 100" role="presentation"><g stroke="#fff" stroke-width="7" stroke-linecap="round" fill="none"><circle cx="58" cy="27" r="7" fill="#fff" stroke="none"/><path d="M55 42 L46 58"/><path d="M62 40 L74 47"/><path d="M55 43 L38 38"/><path d="M46 58 L37 76"/><path d="M46 58 L62 70"/></g></svg>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="eyebrow rv" style="color:var(--azul-300)">Quién te atiende</div>
+        <h2 class="rv" style="font-size:clamp(2.2rem,5.6vw,3.5rem);font-weight:700;margin-top:12px">Dr. Saúl Arredondo Barragán</h2>
+        <p class="rv" style="color:var(--azul-300);font-weight:600;margin:10px 0 0;font-size:1.1rem">
+          Especialista en Medicina del Deporte y Rehabilitación Física
+        </p>
+        <p class="rv" style="color:rgba(255,255,255,.78);margin-top:22px;max-width:52ch">
+          Aquí no te atiende un vendedor de plantillas: te atiende un médico especialista,
+          con diplomado en plantillas ortopédicas. Cada plantilla sale de un estudio,
+          no de una talla estándar.
+        </p>
+
+        <div class="rv" style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin-top:34px">
+          <div style="border-left:2px solid var(--azul-300);padding-left:16px">
+            <div class="display" style="font-size:2.4rem;font-weight:700">3–99</div>
+            <p style="margin:2px 0 0;color:rgba(255,255,255,.7);font-size:.92rem">Años de edad que atendemos</p>
+          </div>
+          <div style="border-left:2px solid var(--azul-300);padding-left:16px">
+            <div class="display" style="font-size:2.4rem;font-weight:700">3</div>
+            <p style="margin:2px 0 0;color:rgba(255,255,255,.7);font-size:.92rem">Servicios bajo un mismo diagnóstico</p>
+          </div>
+          <div style="border-left:2px solid var(--azul-300);padding-left:16px">
+            <div class="display" style="font-size:2.4rem;font-weight:700">10–12</div>
+            <p style="margin:2px 0 0;color:rgba(255,255,255,.7);font-size:.92rem">Días para tus plantillas</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq" style="padding:clamp(72px,11vw,124px) 0;background:var(--blanco)">
+  <div class="wrap" style="max-width:900px">
+    <div class="rv" style="margin-bottom:40px">
+      <div class="eyebrow" style="color:var(--azul)">Preguntas frecuentes</div>
+      <h2 style="font-size:clamp(2.2rem,5.6vw,3.5rem);font-weight:700;margin-top:12px">Lo que más nos preguntan</h2>
+    </div>
+
+    <details class="faq rv"><summary>¿Para qué edad son las plantillas?</summary>
+      <div class="faq-body">Para prácticamente cualquier edad. Atendemos pacientes desde los 3 hasta los 99 años, y la plantilla se diseña según el pie y la etapa de cada persona: no es lo mismo un niño en crecimiento que un adulto que trabaja parado ocho horas.</div></details>
+
+    <details class="faq rv"><summary>¿Cuánto tardan en estar listas?</summary>
+      <div class="faq-body">Entre 10 y 12 días a partir de tu estudio de pisada. Ese tiempo es el que toma fabricarlas a tu medida.</div></details>
+
+    <details class="faq rv"><summary>¿Cada cuánto hay que cambiarlas?</summary>
+      <div class="faq-body">Se recomienda renovarlas una vez al año. Con el uso diario el material pierde soporte y deja de corregir igual.</div></details>
+
+    <details class="faq rv"><summary>¿Qué necesito llevar para el estudio?</summary>
+      <div class="faq-body">Dos cosas: ropa que se pueda subir arriba de la rodilla (short o pants), porque hay que ver la pierna completa, y el calzado que más usas, porque su desgaste muestra cómo pisas realmente. <a href="#que-llevar" style="color:var(--azul);font-weight:600;text-decoration:underline">Ver detalle</a>.</div></details>
+
+    <details class="faq rv"><summary>¿Hay diferencia entre la plantilla deportiva y la de uso diario?</summary>
+      <div class="faq-body">Sí, son dos tipos distintos. La deportiva está pensada para el impacto del entrenamiento o la competencia; la de uso diario, para quien pasa muchas horas de pie o caminando. En la valoración se define cuál te conviene.</div></details>
+
+    <details class="faq rv"><summary>¿La consulta incluye terapia?</summary>
+      <div class="faq-body">Sí. La consulta de $500 incluye tu primera sesión de terapia. Las siguientes sesiones son de $300 cada una.</div></details>
+
+    <details class="faq rv"><summary>¿Necesito cita o puedo llegar directo?</summary>
+      <div class="faq-body">Lo mejor es agendar por WhatsApp para asegurar tu horario, sobre todo si vas por un estudio de pisada. Escríbenos al 715 143 11 05.</div></details>
+  </div>
+</section>
+
+<!-- ============ UBICACIÓN Y HORARIOS ============ -->
+<section id="ubicacion" style="padding:clamp(72px,11vw,124px) 0;background:var(--hueso)">
+  <div class="wrap">
+    <div style="display:grid;gap:44px" class="ubi-cols">
+
+      <div>
+        <div class="eyebrow rv" style="color:var(--azul)">Dónde estamos</div>
+        <h2 class="rv" style="font-size:clamp(2.2rem,5.6vw,3.4rem);font-weight:700;margin-top:12px">Abasolo Sur #16</h2>
+        <!-- TODO: confirmar colonia y CP con el cliente antes de dar de alta el perfil de Google -->
+        <p class="rv" style="color:var(--gris);margin-top:8px">Zitácuaro, Michoacán</p>
+
+        <div class="rv" style="display:grid;gap:12px;margin-top:30px">
+          <a class="btn btn-wa" style="justify-content:flex-start" href="https://wa.me/527151431105?text=Hola%2C%20quiero%20agendar%20una%20cita." target="_blank" rel="noopener">WhatsApp · 715 143 11 05</a>
+          <a class="btn btn-line" style="justify-content:flex-start" href="tel:+527151533839">Teléfono fijo · 153 38 39</a>
+          <a class="btn btn-line" style="justify-content:flex-start" href="https://www.instagram.com/sport.medical.center/" target="_blank" rel="noopener">Instagram · @sport.medical.center</a>
+        </div>
+      </div>
+
+      <div class="rv">
+        <div style="background:#fff;border:1px solid var(--linea);border-radius:var(--r);padding:28px 26px">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:20px">
+            <h3 style="font-size:1.7rem;font-weight:700">Horarios</h3>
+            <span class="pill" style="background:var(--azul-100);border-color:transparent;color:var(--azul)">
+              <span class="dot" id="dot2"></span><span id="estado2">—</span>
+            </span>
+          </div>
+          <div id="tabla-horario" style="display:grid;gap:0"></div>
+          <p style="color:var(--gris);font-size:.9rem;margin:18px 0 0;padding-top:16px;border-top:1px solid var(--linea)">
+            Domingo cerrado. En días festivos confirma por WhatsApp.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA FINAL ============ -->
+<section style="padding:clamp(80px,12vw,140px) 0;background:linear-gradient(160deg,var(--azul) 0%,var(--azul-900) 100%);color:#fff;text-align:center;overflow:hidden">
+  <div class="wrap" style="max-width:820px;position:relative;z-index:2">
+    <h2 class="rv" style="font-size:clamp(2.4rem,7vw,4.4rem);font-weight:700;text-transform:uppercase">
+      Un paso menos<br><span style="color:var(--azul-300)">con dolor</span>
+    </h2>
+    <p class="rv" style="color:rgba(255,255,255,.82);margin:22px auto 0;max-width:46ch;font-size:1.1rem">
+      Agenda tu valoración y sal de la consulta sabiendo exactamente qué tienes y qué sigue.
+    </p>
+    <div class="rv" style="display:flex;flex-wrap:wrap;gap:13px;justify-content:center;margin-top:34px">
+      <a class="btn btn-wa" href="https://wa.me/527151431105?text=Hola%2C%20quiero%20agendar%20mi%20valoraci%C3%B3n%20en%20Sport%20Medical%20Center." target="_blank" rel="noopener">Agendar por WhatsApp</a>
+      <a class="btn btn-ghost" href="tel:+527151431105">Llamar ahora</a>
+    </div>
+  </div>
+  <svg class="ecg" viewBox="0 0 700 120" preserveAspectRatio="none" aria-hidden="true" style="margin-top:52px;height:70px;opacity:.5">
+    <path d="M0,60 L150,60 L172,60 L186,26 L200,96 L214,40 L228,60 L350,60 L372,60 L386,26 L400,96 L414,40 L428,60 L700,60"/>
+  </svg>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer style="background:#081A46;color:rgba(255,255,255,.7);padding:52px 0 34px">
+  <div class="wrap">
+    <div style="display:flex;flex-wrap:wrap;gap:32px;justify-content:space-between;align-items:flex-start">
+      <div style="max-width:320px">
+        <div style="display:flex;align-items:center;gap:11px;margin-bottom:14px">
+          <svg width="38" height="38" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50" fill="#2E63E8"/><g stroke="#fff" stroke-width="7.5" stroke-linecap="round" fill="none"><circle cx="58" cy="27" r="7" fill="#fff" stroke="none"/><path d="M55 42 L46 58"/><path d="M62 40 L74 47"/><path d="M55 43 L38 38"/><path d="M46 58 L37 76"/><path d="M46 58 L62 70"/></g></svg>
+          <span class="display" style="color:#fff;font-weight:700;font-size:1.24rem">SPORT MEDICAL CENTER</span>
+        </div>
+        <p style="margin:0;font-size:.94rem">Medicina del Deporte y Rehabilitación Física. Zitácuaro, Michoacán.</p>
+      </div>
+      <div style="display:grid;gap:9px;font-size:.94rem">
+        <a href="#servicios">Servicios</a>
+        <a href="#plantillas">Plantillas</a>
+        <a href="#precios">Precios</a>
+        <a href="#faq">Preguntas frecuentes</a>
+        <a href="#ubicacion">Ubicación</a>
+      </div>
+      <div style="display:grid;gap:9px;font-size:.94rem">
+        <a href="https://wa.me/527151431105" target="_blank" rel="noopener">WhatsApp 715 143 11 05</a>
+        <a href="tel:+527151533839">Fijo 153 38 39</a>
+        <a href="https://www.instagram.com/sport.medical.center/" target="_blank" rel="noopener">@sport.medical.center</a>
+        <span>Abasolo Sur #16</span>
+      </div>
+    </div>
+    <p style="margin:38px 0 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.12);font-size:.82rem;line-height:1.6">
+      © <span id="anio"></span> Sport Medical Center. Todos los derechos reservados.<br>
+      La información de este sitio es de carácter informativo y no sustituye una valoración médica presencial.
+      Los resultados varían en cada paciente.
+    </p>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/527151431105?text=Hola%2C%20quiero%20informaci%C3%B3n%20de%20Sport%20Medical%20Center." target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <svg width="31" height="31" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35z"/><path d="M12.04 2C6.55 2 2.1 6.45 2.1 11.94c0 1.76.46 3.48 1.34 5L2 22l5.2-1.36a9.9 9.9 0 0 0 4.84 1.24h.01c5.48 0 9.94-4.45 9.94-9.94A9.87 9.87 0 0 0 12.04 2zm0 18.13h-.01a8.25 8.25 0 0 1-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.22 8.22 0 0 1-1.26-4.38c0-4.55 3.71-8.26 8.27-8.26 2.21 0 4.28.86 5.84 2.42a8.2 8.2 0 0 1 2.42 5.85c0 4.56-3.71 8.26-8.27 8.26z"/></svg>
+</a>
+
+<!-- ============ RESPONSIVE ============ -->
+<style>
+@media(min-width:900px){
+  .hero-cols{grid-template-columns:1.15fr .85fr}
+  .err-cols{grid-template-columns:1fr 1fr;gap:72px}
+  .pla-cols{grid-template-columns:1.1fr .9fr;gap:70px}
+  .doc-cols{grid-template-columns:.8fr 1.2fr;gap:64px}
+  .ubi-cols{grid-template-columns:1fr 1fr;gap:60px}
+  .svc-grid{grid-template-columns:1.25fr 1fr;grid-template-areas:"ancla reha" "ancla peso"}
+}
+@media(max-width:899px){
+  .svc-grid{grid-template-areas:"ancla" "reha" "peso"}
+  .hero{padding-top:104px}
+}
+@media(max-width:430px){ .wm-sec{display:none} }
+.hr-fila{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid var(--linea)}
+.hr-fila:last-child{border-bottom:0}
+.hr-fila.hoy{color:var(--azul);font-weight:700}
+</style>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- año ---- */
+  document.getElementById('anio').textContent = new Date().getFullYear();
+
+  /* ---- reveals ---- */
+  var rvs = document.querySelectorAll('.rv');
+  if (reduce || !('IntersectionObserver' in window)) {
+    rvs.forEach(function(el){ el.classList.add('on'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    rvs.forEach(function(el, i){
+      el.style.transitionDelay = (Math.min(i % 6, 5) * 55) + 'ms';
+      io.observe(el);
+    });
+  }
+
+  /* ---- nav al scrollear ---- */
+  var nav = document.getElementById('nav'), tick = false;
+  window.addEventListener('scroll', function(){
+    if (tick) return;
+    tick = true;
+    requestAnimationFrame(function(){
+      nav.classList.toggle('on', window.scrollY > window.innerHeight * 0.75);
+      tick = false;
+    });
+  }, { passive: true });
+
+  /* ---- horarios: estado abierto/cerrado en vivo ----
+     L-V 7:00-14:00 y 16:00-20:00 · Sáb 8:00-14:00 · Dom cerrado          */
+  var HORARIO = {
+    1:[[420,840],[960,1200]], 2:[[420,840],[960,1200]], 3:[[420,840],[960,1200]],
+    4:[[420,840],[960,1200]], 5:[[420,840],[960,1200]],
+    6:[[480,840]], 0:[]
+  };
+  var DIAS = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+
+  function hhmm(m){
+    var h = Math.floor(m/60), mm = m%60;
+    var ap = h >= 12 ? 'pm' : 'am';
+    var h12 = h % 12; if (h12 === 0) h12 = 12;
+    return h12 + ':' + (mm<10?'0':'') + mm + ' ' + ap;
+  }
+  function rango(r){ return hhmm(r[0]) + ' – ' + hhmm(r[1]); }
+
+  function pintarEstado(){
+    var ahora = new Date();
+    var d = ahora.getDay(), min = ahora.getHours()*60 + ahora.getMinutes();
+    var abierto = (HORARIO[d]||[]).some(function(r){ return min >= r[0] && min < r[1]; });
+
+    var txt;
+    if (abierto) {
+      txt = 'Abierto ahora';
+    } else {
+      // siguiente apertura
+      var prox = null;
+      for (var i = 0; i < 8 && !prox; i++){
+        var dd = (d + i) % 7;
+        var rs = HORARIO[dd] || [];
+        for (var j = 0; j < rs.length; j++){
+          if (i > 0 || min < rs[j][0]){
+            prox = (i === 0 ? 'hoy' : (i === 1 ? 'mañana' : DIAS[dd].toLowerCase())) + ' ' + hhmm(rs[j][0]);
+            break;
+          }
+        }
+      }
+      txt = prox ? ('Cerrado · abre ' + prox) : 'Cerrado';
+    }
+
+    ['','2'].forEach(function(sfx){
+      var dot = document.getElementById('dot' + sfx);
+      var lab = document.getElementById('estado' + sfx);
+      if (lab) lab.textContent = txt;
+      if (dot) dot.classList.toggle('off', !abierto);
+    });
+  }
+
+  function pintarTabla(){
+    var cont = document.getElementById('tabla-horario');
+    if (!cont) return;
+    var hoy = new Date().getDay();
+    var html = '';
+    [1,2,3,4,5,6,0].forEach(function(d){
+      var rs = HORARIO[d] || [];
+      var val = rs.length ? rs.map(rango).join('  ·  ') : 'Cerrado';
+      html += '<div class="hr-fila' + (d === hoy ? ' hoy' : '') + '"><span>' + DIAS[d] + '</span><span>' + val + '</span></div>';
+    });
+    cont.innerHTML = html;
+  }
+
+  pintarEstado();
+  pintarTabla();
+  setInterval(pintarEstado, 60000);
+})();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalClinic",
+  "name": "Sport Medical Center",
+  "description": "Plantillas ortopédicas personalizadas, rehabilitación física y control de peso con respaldo médico.",
+  "url": "https://oscararmando2.github.io/MEDICALSPORT/",
+  "telephone": "+527151431105",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Abasolo Sur #16",
+    "addressLocality": "Zitácuaro",
+    "addressRegion": "Michoacán",
+    "addressCountry": "MX"
+  },
+  "medicalSpecialty": "SportsMedicine",
+  "priceRange": "$300 - $1690",
+  "sameAs": ["https://www.instagram.com/sport.medical.center/"],
+  "employee": {
+    "@type": "Physician",
+    "name": "Dr. Saúl Arredondo Barragán",
+    "medicalSpecialty": "SportsMedicine"
+  },
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "07:00", "closes": "14:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "16:00", "closes": "20:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "14:00" }
+  ]
+}
+</script>
+
+</body>
+</html>
