@@ -29,13 +29,28 @@ docs/               # brief e identidad visual — NO versionado (ver .gitignore
 
 1. Hero — el gancho + estado abierto/cerrado en vivo + CTA WhatsApp
 2. El error — conciencia del problema y señales de alerta
-3. Servicios — plantillas (dominante), rehabilitación, control de peso
-4. Plantillas — dos tipos, proceso de 4 pasos, qué traer al estudio
-5. Precios — transparentes, consulta destacada como entrada
-6. El doctor — credibilidad
-7. Preguntas frecuentes — las dudas reales que recibe la clínica
-8. Ubicación y horarios — tabla con el día de hoy resaltado
-9. CTA final + footer
+3. Efecto dominó — el pie tira la siguiente ficha: tobillo, rodilla, cadera, espalda
+4. Servicios — plantillas (dominante), rehabilitación, control de peso
+5. Plantillas — dos tipos, proceso de 4 pasos, qué traer al estudio
+6. Precios — transparentes, consulta destacada como entrada
+7. El doctor — credibilidad
+8. Preguntas frecuentes — las dudas reales que recibe la clínica
+9. Ubicación y horarios — tabla con el día de hoy resaltado
+10. CTA final + footer
+
+### Efecto dominó
+
+Sección fijada (`position:sticky`) de 520vh en escritorio. El progreso del scroll
+revela primero el bloque de texto y después una tarjeta a la vez, mientras la línea
+de calor avanza de izquierda a derecha y cada hueso se dibuja trazo a trazo
+(`stroke-dashoffset` sobre elementos con `pathLength="1"`).
+
+Debajo de 900px y con `prefers-reduced-motion` **no se fija**: las tarjetas se apilan
+y entran con IntersectionObserver, que en vertical da el mismo efecto de una por una.
+
+**Ojo:** los trazos animados se marcan con la clase `.tz`, no con `[pathLength]`.
+El parser de CSS pasa a minúsculas el nombre del atributo en el selector y en SVG
+distingue mayúsculas, así que un selector de atributo nunca llega a aplicar.
 
 ## Convenciones
 

@@ -207,6 +207,84 @@ a:focus-visible,button:focus-visible,summary:focus-visible{
 .wa-float:hover{transform:scale(1.08)}
 @supports(padding:max(0px)){ .wa-float{bottom:max(18px,env(safe-area-inset-bottom))} }
 
+
+/* ============================================================
+   EFECTO DOMINÓ — sección con pin y revelado por scroll.
+   El texto entra primero; luego cada tarjeta se descubre una
+   por una conforme avanza el scroll, y la línea de calor se
+   traza de izquierda a derecha con un destello que la recorre.
+   ============================================================ */
+.dom{background:linear-gradient(178deg,#0A2058 0%,var(--azul-900) 45%,#081A46 100%);color:#fff;position:relative}
+.dom::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background:radial-gradient(760px 460px at 50% 22%,rgba(46,99,232,.34),transparent 66%)}
+.dom-pin{position:relative;z-index:2;padding:clamp(72px,10vw,110px) 0}
+
+.dom-head{max-width:60ch;margin-bottom:clamp(30px,4vw,44px);
+  opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.dom-head.on{opacity:1;transform:none}
+.dom-head h2{font-size:clamp(2.3rem,6vw,4rem);font-weight:700;margin-top:12px}
+.dom-head p{color:rgba(255,255,255,.76);margin:18px 0 0;max-width:54ch}
+
+/* línea de calor */
+.dom-linea{position:relative;height:3px;border-radius:2px;background:rgba(255,255,255,.13);
+  margin-bottom:clamp(26px,3.4vw,38px);overflow:visible}
+.dom-fill{position:absolute;inset:0 auto 0 0;width:0;border-radius:2px;
+  background:linear-gradient(90deg,var(--azul-600),var(--azul-300));
+  box-shadow:0 0 18px rgba(143,176,247,.55);transition:width .6s var(--ease)}
+.dom-spark{position:absolute;top:50%;left:0;width:13px;height:13px;border-radius:50%;
+  transform:translate(-50%,-50%);background:#DEE8FC;opacity:0;
+  box-shadow:0 0 16px 5px rgba(143,176,247,.75);transition:left .6s var(--ease),opacity .4s}
+.dom-linea.on .dom-spark{opacity:1}
+
+/* tira de tarjetas */
+.dom-tira{display:grid;gap:16px;grid-template-columns:1fr}
+@media(min-width:900px){ .dom-tira{grid-template-columns:repeat(5,1fr);gap:14px;align-items:stretch} }
+
+.dcard{position:relative;display:flex;flex-direction:column;
+  padding:22px 18px 20px;border-radius:16px;
+  background:rgba(255,255,255,.055);border:1px solid rgba(143,176,247,.18);
+  backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);
+  opacity:0;transform:translateY(34px) rotate(-4.5deg);transform-origin:bottom left;
+  transition:opacity .62s var(--ease),transform .72s var(--ease),
+             border-color .4s ease,background .4s ease}
+.dcard.on{opacity:1;transform:none;border-color:rgba(143,176,247,.34);background:rgba(255,255,255,.085)}
+.dcard-n{font-family:'Barlow Condensed',sans-serif;font-size:1.5rem;font-weight:700;
+  color:var(--azul-300);line-height:1;letter-spacing:.04em}
+.dcard h3{font-size:1.45rem;font-weight:700;margin-top:4px}
+.dcard p{margin:8px 0 0;color:rgba(255,255,255,.72);font-size:.94rem;line-height:1.55}
+
+/* el hueso se dibuja trazo a trazo */
+.hueso{width:100%;max-width:138px;height:auto;margin:12px 0 14px;color:var(--azul-300);align-self:center}
+.hueso .tz{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.05s var(--ease)}
+.dcard.on .hueso .tz{stroke-dashoffset:0}
+.dcard.on .hueso .tz:nth-child(n+4){transition-delay:.14s}
+.dcard.on .hueso .tz:nth-child(n+8){transition-delay:.28s}
+
+.dom-pie{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;
+  margin-top:clamp(28px,3.6vw,42px);padding-top:22px;border-top:1px solid rgba(255,255,255,.12);
+  opacity:0;transform:translateY(16px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.dom-pie.on{opacity:1;transform:none}
+.dom-pie p{margin:0;color:rgba(255,255,255,.76);max-width:46ch}
+
+/* --- modo pin: solo en escritorio y sin reduced-motion --- */
+.dom.is-pin{height:520vh}
+.dom.is-pin .dom-pin{position:sticky;top:0;height:100svh;display:flex;align-items:center;
+  padding:64px 0 28px;overflow:hidden}
+@media(min-width:900px) and (max-height:760px){
+  .dom.is-pin .dcard{padding:16px 14px}
+  .dom.is-pin .hueso{max-width:104px;margin:8px 0 10px}
+  .dom.is-pin .dcard h3{font-size:1.25rem}
+  .dom.is-pin .dcard p{font-size:.87rem}
+}
+
+/* sin pin: todo visible desde el arranque para quien pide menos movimiento */
+@media (prefers-reduced-motion:reduce){
+  .dom-head,.dcard,.dom-pie{opacity:1!important;transform:none!important;transition:none}
+  .hueso .tz{stroke-dashoffset:0!important;transition:none}
+  .dom-fill{width:100%!important;transition:none}
+  .dom-spark{display:none}
+}
+
 .sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 </style>
 </head>
@@ -308,6 +386,73 @@ a:focus-visible,button:focus-visible,summary:focus-visible{
         <div style="margin-top:26px">
           <a class="btn btn-line" href="https://wa.me/527151431105?text=Hola%2C%20tengo%20molestias%20y%20quiero%20una%20valoraci%C3%B3n." target="_blank" rel="noopener">Quiero una valoración</a>
         </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ EFECTO DOMINÓ ============ -->
+<section id="domino" class="dom">
+  <div class="dom-pin">
+    <div class="wrap">
+
+      <div class="dom-head">
+        <div class="eyebrow" style="color:var(--azul-300)">Efecto dominó</div>
+        <h2>El pie es la primera ficha</h2>
+        <p>
+          Casi nadie llega a consulta por dolor de pie. Llegan por la rodilla, por la cadera,
+          por la espalda baja. El problema empezó cinco piezas antes, en cómo pisas.
+        </p>
+      </div>
+
+      <div class="dom-linea" aria-hidden="true">
+        <span class="dom-fill"></span>
+        <span class="dom-spark"></span>
+      </div>
+
+      <div class="dom-tira">
+
+        <article class="dcard" data-i="0">
+          <div class="dcard-n">01</div>
+          <svg class="hueso" viewBox="0 0 120 150" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path class="tz" pathLength="1" d="M60 48c17 0 25 12 24 27-1 13-6 21-6 32s7 20 6 31c-2 14-11 21-24 21s-22-7-23-21c-1-11 6-19 6-32s-6-19-7-31c-1-15 7-27 24-27z"/><ellipse class="tz" pathLength="1" cx="44" cy="34" rx="9" ry="10"/><ellipse class="tz" pathLength="1" cx="61" cy="31" rx="6.5" ry="7.5"/><ellipse class="tz" pathLength="1" cx="73" cy="34" rx="5.5" ry="6.5"/><ellipse class="tz" pathLength="1" cx="82" cy="39" rx="5" ry="5.5"/><ellipse class="tz" pathLength="1" cx="89" cy="45" rx="4.2" ry="4.6"/><path class="tz" pathLength="1" d="M45 116c9-11 22-13 31-5"/></g></svg>
+          <h3>La pisada</h3>
+          <p>Todo empieza aquí. Un arco vencido o una pisada desviada cambia cómo repartes tu peso en cada paso que das.</p>
+        </article>
+
+        <article class="dcard" data-i="1">
+          <div class="dcard-n">02</div>
+          <svg class="hueso" viewBox="0 0 120 150" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path class="tz" pathLength="1" stroke-width="6" d="M52 22v66"/><path class="tz" pathLength="1" stroke-width="3.4" d="M67 26v60"/><circle class="tz" pathLength="1" cx="52" cy="94" r="6"/><circle class="tz" pathLength="1" cx="67" cy="92" r="5"/><path class="tz" pathLength="1" d="M38 106c2-9 42-9 44 1 2 10-46 11-44-1z"/><path class="tz" pathLength="1" d="M32 122c2-9 30-9 36 0 5 9-40 12-36 0z"/><path class="tz" pathLength="1" d="M66 126h32"/></g></svg>
+          <h3>El tobillo</h3>
+          <p>Compensa la desviación girando de más. Se carga siempre del mismo lado y empieza a inflamarse sin que lo notes.</p>
+        </article>
+
+        <article class="dcard" data-i="2">
+          <div class="dcard-n">03</div>
+          <svg class="hueso" viewBox="0 0 120 150" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path class="tz" pathLength="1" stroke-width="6" d="M56 18v38"/><circle class="tz" pathLength="1" cx="45" cy="68" r="13"/><circle class="tz" pathLength="1" cx="69" cy="68" r="13"/><ellipse class="tz" pathLength="1" cx="25" cy="68" rx="8.5" ry="13"/><path class="tz" pathLength="1" d="M40 84h36"/><path class="tz" pathLength="1" stroke-width="6" d="M57 86v48"/><path class="tz" pathLength="1" stroke-width="3.4" d="M80 92v40"/></g></svg>
+          <h3>La rodilla</h3>
+          <p>Recibe el giro que viene de abajo. Aparece la molestia al subir escaleras o al día siguiente de caminar de más.</p>
+        </article>
+
+        <article class="dcard" data-i="3">
+          <div class="dcard-n">04</div>
+          <svg class="hueso" viewBox="0 0 120 150" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path class="tz" pathLength="1" d="M20 30c26-16 56-4 54 26-2 20-32 28-50 15C10 60 8 38 20 30z"/><path class="tz" pathLength="1" d="M32 74c5 15 20 19 27 10"/><circle class="tz" pathLength="1" cx="82" cy="68" r="13"/><path class="tz" pathLength="1" stroke-width="5" d="M91 78l8 14"/><path class="tz" pathLength="1" stroke-width="6" d="M99 92v44"/></g></svg>
+          <h3>La cadera</h3>
+          <p>Se desnivela para mantenerte derecho. Un lado trabaja más que el otro, todos los días, durante años.</p>
+        </article>
+
+        <article class="dcard" data-i="4">
+          <div class="dcard-n">05</div>
+          <svg class="hueso" viewBox="0 0 120 150" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><ellipse class="tz" pathLength="1" cx="68" cy="30" rx="17" ry="8.5"/><path class="tz" pathLength="1" d="M51 32 32 40"/><ellipse class="tz" pathLength="1" cx="63" cy="58" rx="17" ry="8.5"/><path class="tz" pathLength="1" d="M46 60 27 68"/><ellipse class="tz" pathLength="1" cx="61" cy="86" rx="17" ry="8.5"/><path class="tz" pathLength="1" d="M44 88 25 96"/><ellipse class="tz" pathLength="1" cx="64" cy="114" rx="17" ry="8.5"/><path class="tz" pathLength="1" d="M47 116 28 124"/><path class="tz" pathLength="1" d="M78 40v8"/><path class="tz" pathLength="1" d="M76 68v8"/><path class="tz" pathLength="1" d="M76 96v8"/><path class="tz" pathLength="1" d="M56 128c6 10 18 10 22 0"/></g></svg>
+          <h3>La espalda</h3>
+          <p>El último eslabón. La columna termina corrigiendo lo que nadie corrigió abajo, y ahí es donde por fin duele.</p>
+        </article>
+
+      </div>
+
+      <div class="dom-pie">
+        <p>Por eso una valoración seria empieza en el suelo, no donde te duele.</p>
+        <a class="btn btn-ghost btn-sm" href="#plantillas">Cómo se corrige</a>
       </div>
 
     </div>
@@ -801,6 +946,90 @@ a:focus-visible,button:focus-visible,summary:focus-visible{
   pintarEstado();
   pintarTabla();
   setInterval(pintarEstado, 60000);
+
+  /* ---- Efecto dominó: revelado por scroll, una tarjeta a la vez ---- */
+  (function(){
+    var sec = document.getElementById('domino');
+    if (!sec) return;
+
+    var head  = sec.querySelector('.dom-head');
+    var linea = sec.querySelector('.dom-linea');
+    var fill  = sec.querySelector('.dom-fill');
+    var spark = sec.querySelector('.dom-spark');
+    var cards = [].slice.call(sec.querySelectorAll('.dcard'));
+    var pie   = sec.querySelector('.dom-pie');
+
+    /* En móvil o con reduced-motion no se fija la sección: cada bloque
+       se revela solo al entrar en pantalla, que en vertical ya es
+       exactamente "una por una conforme bajas". */
+    var puedeFijar = window.matchMedia('(min-width:900px)').matches &&
+                     !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!puedeFijar) {
+      if (!('IntersectionObserver' in window)) {
+        [head, pie].concat(cards).forEach(function(el){ el && el.classList.add('on'); });
+        linea.classList.add('on'); fill.style.width = '100%';
+        return;
+      }
+      var io = new IntersectionObserver(function(es){
+        es.forEach(function(e){
+          if (!e.isIntersecting) return;
+          e.target.classList.add('on');
+          io.unobserve(e.target);
+          var i = cards.indexOf(e.target);
+          if (i > -1){
+            var pct = ((i + 1) / cards.length) * 100;
+            linea.classList.add('on');
+            fill.style.width = pct + '%';
+            spark.style.left = pct + '%';
+          }
+        });
+      }, { threshold:.3, rootMargin:'0px 0px -12% 0px' });
+      [head].concat(cards).concat([pie]).forEach(function(el){ el && io.observe(el); });
+      return;
+    }
+
+    sec.classList.add('is-pin');
+
+    /* Reparto del scroll: primero el texto, luego una tarjeta por tramo. */
+    var P_TEXTO = 0.10;
+    var P_INI   = 0.16;   // arranca la primera tarjeta
+    var P_FIN   = 0.94;   // termina la última
+    var tramo   = (P_FIN - P_INI) / cards.length;
+
+    var pendiente = false;
+    function pintar(){
+      var r = sec.getBoundingClientRect();
+      var recorrido = sec.offsetHeight - window.innerHeight;
+      var p = recorrido > 0 ? (-r.top) / recorrido : 0;
+      if (p < 0) p = 0; else if (p > 1) p = 1;
+
+      head.classList.toggle('on', p > P_TEXTO * 0.35);
+
+      var vistas = 0;
+      cards.forEach(function(c, i){
+        var umbral = P_INI + i * tramo;
+        var on = p >= umbral;
+        c.classList.toggle('on', on);
+        if (on) vistas++;
+      });
+
+      linea.classList.toggle('on', p > P_INI * 0.6);
+      var pct = (vistas / cards.length) * 100;
+      fill.style.width = pct + '%';
+      spark.style.left = pct + '%';
+
+      pie.classList.toggle('on', vistas === cards.length);
+    }
+
+    window.addEventListener('scroll', function(){
+      if (pendiente) return;
+      pendiente = true;
+      requestAnimationFrame(function(){ pintar(); pendiente = false; });
+    }, { passive:true });
+    window.addEventListener('resize', pintar, { passive:true });
+    pintar();
+  })();
 })();
 </script>
 
