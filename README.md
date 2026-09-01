@@ -45,8 +45,13 @@ revela primero el bloque de texto y después una tarjeta a la vez, mientras la l
 de calor avanza de izquierda a derecha y cada hueso se dibuja trazo a trazo
 (`stroke-dashoffset` sobre elementos con `pathLength="1"`).
 
-Debajo de 900px y con `prefers-reduced-motion` **no se fija**: las tarjetas se apilan
-y entran con IntersectionObserver, que en vertical da el mismo efecto de una por una.
+En móvil y tablet (<900px) **también se fija**, pero cambia de formato: se ve
+**una sola tarjeta a pantalla completa** y el scroll la reemplaza por la siguiente
+(`.is-act` entra, `.is-past` sale hacia arriba). El encabezado se encoge (`.is-min`)
+y el bloque de cierre está colapsado hasta el último tiempo, para que la tarjeta
+ocupe toda la altura disponible.
+
+Solo con `prefers-reduced-motion` no se fija: todo queda apilado y visible.
 
 **Ojo:** los trazos animados se marcan con la clase `.tz`, no con `[pathLength]`.
 El parser de CSS pasa a minúsculas el nombre del atributo en el selector y en SVG

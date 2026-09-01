@@ -277,6 +277,45 @@ a:focus-visible,button:focus-visible,summary:focus-visible{
   .dom.is-pin .dcard p{font-size:.87rem}
 }
 
+/* --- móvil: la sección también se fija, pero se ve UNA tarjeta a la vez
+       ocupando toda la pantalla. El texto tiene su propio primer tiempo. --- */
+@media(max-width:899px){
+  .dom.is-pin{height:540vh}
+  .dom.is-pin .dom-pin{padding:68px 0 20px;align-items:stretch}
+  .dom.is-pin .wrap{display:flex;flex-direction:column;height:100%}
+
+  .dom.is-pin .dom-head{flex:0 0 auto;margin-bottom:14px}
+  .dom.is-pin .dom-head h2{font-size:clamp(2.1rem,9vw,3rem);
+    transition:font-size .55s var(--ease)}
+  .dom.is-pin .dom-head p{overflow:hidden;max-height:14em;
+    transition:opacity .45s var(--ease),max-height .55s var(--ease),margin .55s var(--ease)}
+  .dom.is-pin .dom-head.is-min h2{font-size:1.6rem}
+  .dom.is-pin .dom-head.is-min p{opacity:0;max-height:0;margin-top:0}
+
+  .dom.is-pin .dom-linea{flex:0 0 auto;margin-bottom:16px}
+
+  .dom.is-pin .dom-tira{position:relative;display:block;flex:1 1 auto;min-height:0}
+  .dom.is-pin .dcard{position:absolute;inset:0;justify-content:center;
+    padding:24px 22px;pointer-events:none;
+    opacity:0;transform:translateY(48px) rotate(-5deg)}
+  .dom.is-pin .dcard.is-act{opacity:1;transform:none;pointer-events:auto}
+  .dom.is-pin .dcard.is-past{opacity:0;transform:translateY(-36px) rotate(3deg)}
+  .dom.is-pin .dcard-n{font-size:1.9rem}
+  .dom.is-pin .dcard h3{font-size:1.95rem;margin-top:6px}
+  .dom.is-pin .dcard p{font-size:1.02rem;line-height:1.5}
+  .dom.is-pin .hueso{max-width:min(56vw,238px);margin:16px 0 18px}
+
+  /* el cierre no roba altura hasta que de verdad toca mostrarlo:
+     así la tarjeta ocupa toda la pantalla en los primeros tiempos */
+  .dom.is-pin .dom-pie{flex:0 0 auto;gap:12px;margin-top:0;padding-top:0;border-top:0;
+    max-height:0;overflow:hidden;
+    transition:max-height .6s var(--ease),opacity .55s var(--ease),
+               margin-top .6s var(--ease),padding-top .6s var(--ease)}
+  .dom.is-pin .dom-pie.on{max-height:190px;margin-top:14px;padding-top:14px;
+    border-top:1px solid rgba(255,255,255,.12)}
+  .dom.is-pin .dom-pie p{font-size:.92rem}
+}
+
 /* sin pin: todo visible desde el arranque para quien pide menos movimiento */
 @media (prefers-reduced-motion:reduce){
   .dom-head,.dcard,.dom-pie{opacity:1!important;transform:none!important;transition:none}
@@ -422,7 +461,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{
 
         <article class="dcard" data-i="1">
           <div class="dcard-n">02</div>
-          <svg class="hueso" viewBox="0 0 120 150" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path class="tz" pathLength="1" stroke-width="6" d="M52 22v66"/><path class="tz" pathLength="1" stroke-width="3.4" d="M67 26v60"/><circle class="tz" pathLength="1" cx="52" cy="94" r="6"/><circle class="tz" pathLength="1" cx="67" cy="92" r="5"/><path class="tz" pathLength="1" d="M38 106c2-9 42-9 44 1 2 10-46 11-44-1z"/><path class="tz" pathLength="1" d="M32 122c2-9 30-9 36 0 5 9-40 12-36 0z"/><path class="tz" pathLength="1" d="M66 126h32"/></g></svg>
+          <svg class="hueso" viewBox="0 0 120 150" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path class="tz" pathLength="1" d="M46 20c-3 26-3 48 0 66"/><path class="tz" pathLength="1" d="M76 20c3 26 3 50-1 66"/><circle class="tz" pathLength="1" cx="60" cy="94" r="16"/><circle class="tz" pathLength="1" cx="60" cy="94" r="6"/><path class="tz" pathLength="1" d="M34 124c2-10 30-14 40-6 9 7 20 6 24 14"/><path class="tz" pathLength="1" d="M32 132h72"/></g></svg>
           <h3>El tobillo</h3>
           <p>Compensa la desviación girando de más. Se carga siempre del mismo lado y empieza a inflamarse sin que lo notes.</p>
         </article>
@@ -959,11 +998,11 @@ a:focus-visible,button:focus-visible,summary:focus-visible{
     var cards = [].slice.call(sec.querySelectorAll('.dcard'));
     var pie   = sec.querySelector('.dom-pie');
 
-    /* En móvil o con reduced-motion no se fija la sección: cada bloque
-       se revela solo al entrar en pantalla, que en vertical ya es
-       exactamente "una por una conforme bajas". */
-    var puedeFijar = window.matchMedia('(min-width:900px)').matches &&
-                     !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    /* Se fija en todas las pantallas; solo se descarta si piden menos
+       movimiento. En chico se muestra UNA tarjeta a pantalla completa. */
+    var mqAncho = window.matchMedia('(min-width:900px)');
+    var puedeFijar = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var esMovil = !mqAncho.matches;
 
     if (!puedeFijar) {
       if (!('IntersectionObserver' in window)) {
@@ -990,6 +1029,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{
     }
 
     sec.classList.add('is-pin');
+    if (esMovil) sec.classList.add('is-movil');
 
     /* Reparto del scroll: primero el texto, luego una tarjeta por tramo. */
     var P_TEXTO = 0.10;
@@ -1004,15 +1044,23 @@ a:focus-visible,button:focus-visible,summary:focus-visible{
       var p = recorrido > 0 ? (-r.top) / recorrido : 0;
       if (p < 0) p = 0; else if (p > 1) p = 1;
 
-      head.classList.toggle('on', p > P_TEXTO * 0.35);
+      var act = -1;
+      cards.forEach(function(c, i){ if (p >= P_INI + i * tramo) act = i; });
 
-      var vistas = 0;
+      head.classList.toggle('on', p > P_TEXTO * 0.35);
+      head.classList.toggle('is-min', esMovil && act >= 0);
+
       cards.forEach(function(c, i){
-        var umbral = P_INI + i * tramo;
-        var on = p >= umbral;
-        c.classList.toggle('on', on);
-        if (on) vistas++;
+        c.classList.toggle('on', i <= act);
+        if (esMovil){
+          c.classList.toggle('is-act',  i === act);
+          c.classList.toggle('is-past', i < act);
+        } else {
+          c.classList.remove('is-act', 'is-past');
+        }
       });
+
+      var vistas = act + 1;
 
       linea.classList.toggle('on', p > P_INI * 0.6);
       var pct = (vistas / cards.length) * 100;
@@ -1027,7 +1075,11 @@ a:focus-visible,button:focus-visible,summary:focus-visible{
       pendiente = true;
       requestAnimationFrame(function(){ pintar(); pendiente = false; });
     }, { passive:true });
-    window.addEventListener('resize', pintar, { passive:true });
+    window.addEventListener('resize', function(){
+      esMovil = !mqAncho.matches;
+      sec.classList.toggle('is-movil', esMovil);
+      pintar();
+    }, { passive:true });
     pintar();
   })();
 })();
