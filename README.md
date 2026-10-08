@@ -57,6 +57,11 @@ Solo con `prefers-reduced-motion` no se fija: todo queda apilado y visible.
 El parser de CSS pasa a minúsculas el nombre del atributo en el selector y en SVG
 distingue mayúsculas, así que un selector de atributo nunca llega a aplicar.
 
+Las ilustraciones vienen de Claude Design. Cuatro son SVG en línea y se dibujan trazo
+a trazo; **la quinta (la espalda) es un PNG** (`assets/espalda.png`), así que solo hace
+fundido, no se dibuja. Si algún día llega en SVG, sustituir el `<img class="hueso-img">`
+por el `<svg class="hueso">` y se anima sola.
+
 ## Convenciones
 
 - **Paleta monocromática azul** tomada del logo. El verde aparece *únicamente* en el botón de
@@ -80,5 +85,8 @@ GitHub Pages desde `main`. Un push a `main` publica; ojo con la caché del naveg
 - Foto real del Dr. Saúl (hoy hay un marcador circular con el isotipo)
 - Logo en vector para reemplazar el SVG reconstruido
 - Imagen OG (`assets/og-smc-v1.png`) — referenciada en los metadatos, aún no existe
+- Rehacer tres ilustraciones del efecto dominó: la pisada trae cara y trazos rojos, la
+  cadera es una silueta con ropa interior y flechas de reducción, y la espalda es PNG en
+  vez de SVG. Los trazos rojos (`#F26B6B`) rompen la paleta monocromática azul
 - Confirmar colonia y CP para el mapa y el perfil de Google
 - Testimonios reales (el cuestionario no los trae; no se inventan)

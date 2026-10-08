@@ -255,10 +255,19 @@ a:focus-visible,button:focus-visible,summary:focus-visible{
 
 /* el hueso se dibuja trazo a trazo */
 .hueso{width:100%;max-width:138px;height:auto;margin:12px 0 14px;color:var(--azul-300);align-self:center}
-.hueso .tz{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.05s var(--ease)}
+.hueso-img{aspect-ratio:120/150;object-fit:contain;opacity:0;transition:opacity .9s var(--ease)}
+.dcard.on .hueso-img{opacity:1}
+.hueso .tz{stroke-dasharray:1 2;stroke-dashoffset:1;transition:stroke-dashoffset 1.1s var(--ease)}
 .dcard.on .hueso .tz{stroke-dashoffset:0}
-.dcard.on .hueso .tz:nth-child(n+4){transition-delay:.14s}
-.dcard.on .hueso .tz:nth-child(n+8){transition-delay:.28s}
+.dcard.on .hueso .tz:nth-child(2){transition-delay:.12s}
+.dcard.on .hueso .tz:nth-child(3){transition-delay:.24s}
+.dcard.on .hueso .tz:nth-child(4){transition-delay:.36s}
+.dcard.on .hueso .tz:nth-child(5){transition-delay:.48s}
+.dcard.on .hueso .tz:nth-child(6){transition-delay:.60s}
+.dcard.on .hueso .tz:nth-child(7){transition-delay:.72s}
+.dcard.on .hueso .tz:nth-child(8){transition-delay:.84s}
+.dcard.on .hueso .tz:nth-child(9){transition-delay:.96s}
+.dcard.on .hueso .tz:nth-child(n+10){transition-delay:1.08s}
 
 .dom-pie{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;
   margin-top:clamp(28px,3.6vw,42px);padding-top:22px;border-top:1px solid rgba(255,255,255,.12);
@@ -320,6 +329,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{
 @media (prefers-reduced-motion:reduce){
   .dom-head,.dcard,.dom-pie{opacity:1!important;transform:none!important;transition:none}
   .hueso .tz{stroke-dashoffset:0!important;transition:none}
+  .hueso-img{opacity:1!important;transition:none}
   .dom-fill{width:100%!important;transition:none}
   .dom-spark{display:none}
 }
@@ -454,35 +464,68 @@ a:focus-visible,button:focus-visible,summary:focus-visible{
 
         <article class="dcard" data-i="0">
           <div class="dcard-n">01</div>
-          <svg class="hueso" viewBox="0 0 120 150" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path class="tz" pathLength="1" d="M60 48c17 0 25 12 24 27-1 13-6 21-6 32s7 20 6 31c-2 14-11 21-24 21s-22-7-23-21c-1-11 6-19 6-32s-6-19-7-31c-1-15 7-27 24-27z"/><ellipse class="tz" pathLength="1" cx="44" cy="34" rx="9" ry="10"/><ellipse class="tz" pathLength="1" cx="61" cy="31" rx="6.5" ry="7.5"/><ellipse class="tz" pathLength="1" cx="73" cy="34" rx="5.5" ry="6.5"/><ellipse class="tz" pathLength="1" cx="82" cy="39" rx="5" ry="5.5"/><ellipse class="tz" pathLength="1" cx="89" cy="45" rx="4.2" ry="4.6"/><path class="tz" pathLength="1" d="M45 116c9-11 22-13 31-5"/></g></svg>
+          <svg class="hueso" viewBox="0 0 120 150" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="tz" pathLength="1" stroke-width="2.8" d="M44 50C52 38 72 36 84 44C92 50 92 62 90 74C88 88 84 100 84 112C84 126 80 140 66 142C52 144 44 132 44 118C44 104 50 92 46 80C42 68 38 58 44 50Z"></path>
+          <path class="tz" pathLength="1" stroke-width="2.2" d="M36 28a6 8 0 1 0 12 0a6 8 0 1 0-12 0ZM50.5 20a5.5 6.5 0 1 0 11 0a5.5 6.5 0 1 0-11 0ZM64 17a5 5.5 0 1 0 10 0a5 5.5 0 1 0-10 0ZM76.8 20a4.2 5 0 1 0 8.4 0a4.2 5 0 1 0-8.4 0ZM87.4 28a3.6 4.2 0 1 0 7.2 0a3.6 4.2 0 1 0-7.2 0Z"></path>
+          <path class="tz" pathLength="1" stroke-width="2.4" stroke="#F26B6B" d="M44 50C46 62 48 72 48 82C46 76 44 70 42 66"></path>
+          <path class="tz" pathLength="1" stroke-width="2.4" stroke="#F26B6B" d="M48 132C54 140 72 140 80 128C78 124 70 122 62 123C54 124 50 128 48 132Z"></path>
+          <path class="tz" pathLength="1" stroke-width="2.4" d="M54 72L58 76M58 72L54 76M74 70L78 74M78 70L74 74"></path>
+          <path class="tz" pathLength="1" stroke-width="2.4" d="M56 92C62 86 70 86 76 92"></path>
+          <path class="tz" pathLength="1" stroke-width="2" stroke="#F26B6B" d="M22 40L30 48M18 60L28 62M26 20L32 30"></path>
+          <path class="tz" pathLength="1" stroke-width="2" stroke="#F26B6B" d="M106 56L98 60M108 74L100 72M100 40L96 48"></path></svg>
           <h3>La pisada</h3>
           <p>Todo empieza aquí. Un arco vencido o una pisada desviada cambia cómo repartes tu peso en cada paso que das.</p>
         </article>
 
         <article class="dcard" data-i="1">
           <div class="dcard-n">02</div>
-          <svg class="hueso" viewBox="0 0 120 150" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path class="tz" pathLength="1" d="M46 20c-3 26-3 48 0 66"/><path class="tz" pathLength="1" d="M76 20c3 26 3 50-1 66"/><circle class="tz" pathLength="1" cx="60" cy="94" r="16"/><circle class="tz" pathLength="1" cx="60" cy="94" r="6"/><path class="tz" pathLength="1" d="M34 124c2-10 30-14 40-6 9 7 20 6 24 14"/><path class="tz" pathLength="1" d="M32 132h72"/></g></svg>
+          <svg class="hueso" viewBox="0 0 120 150" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g transform="translate(8 25) scale(.3) translate(-150 -140)">
+          <path class="tz" pathLength="1" stroke-width="9" d="M167 145L182 318C160 360 146 410 158 440C170 466 210 470 245 462C290 452 330 470 400 476L475 474C496 472 497 432 482 428C440 418 380 392 340 366C310 346 292 326 290 296L298 145"></path>
+          <path class="tz" pathLength="1" stroke-width="9" d="M218 145L216 325"></path>
+          <path class="tz" pathLength="1" stroke-width="9" d="M256 145L258 330"></path>
+          <path class="tz" pathLength="1" stroke-width="9" d="M216 325C204 340 200 365 210 380C220 392 240 392 250 382C265 382 272 372 272 360C272 345 262 335 258 330"></path>
+          <path class="tz" pathLength="1" stroke-width="9" d="M210 380C188 385 178 405 182 425C188 445 210 452 230 448C250 440 262 425 280 425C320 430 380 450 430 458L470 460C482 460 484 446 470 441C430 425 360 400 300 378C285 372 275 370 268 372"></path>
+          <path class="tz" pathLength="1" stroke-width="9" d="M405 432C420 440 430 449 433 458"></path>
+          <path class="tz" pathLength="1" stroke-width="9" d="M325 265L360 233"></path>
+          <path class="tz" pathLength="1" stroke-width="9" d="M345 287L405 270"></path>
+          <path class="tz" pathLength="1" stroke-width="9" d="M340 318L388 327"></path>
+        </g></svg>
           <h3>El tobillo</h3>
           <p>Compensa la desviación girando de más. Se carga siempre del mismo lado y empieza a inflamarse sin que lo notes.</p>
         </article>
 
         <article class="dcard" data-i="2">
           <div class="dcard-n">03</div>
-          <svg class="hueso" viewBox="0 0 120 150" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path class="tz" pathLength="1" stroke-width="6" d="M56 18v38"/><circle class="tz" pathLength="1" cx="45" cy="68" r="13"/><circle class="tz" pathLength="1" cx="69" cy="68" r="13"/><ellipse class="tz" pathLength="1" cx="25" cy="68" rx="8.5" ry="13"/><path class="tz" pathLength="1" d="M40 84h36"/><path class="tz" pathLength="1" stroke-width="6" d="M57 86v48"/><path class="tz" pathLength="1" stroke-width="3.4" d="M80 92v40"/></g></svg>
+          <svg class="hueso" viewBox="0 0 120 150" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="tz" pathLength="1" stroke-width="2.6" d="M42 4C42 30 40 44 32 54C24 62 22 72 26 80C30 86 38 86 46 84C52 82 56 78 60 78C64 78 68 82 74 84C82 86 90 86 94 80C98 72 96 62 88 54C80 44 78 30 78 4"></path>
+          <path class="tz" pathLength="1" stroke-width="2.6" d="M30 66C34 58 46 56 54 60C58 62 62 62 66 60C74 56 86 58 90 66"></path>
+          <path class="tz" pathLength="1" stroke-width="2.6" d="M50 82C56 76 64 72 72 72M52 74C58 78 66 84 72 88"></path>
+          <path class="tz" pathLength="1" stroke-width="2.6" d="M24 86C22 90 26 92 34 92L86 92C94 92 98 90 96 86"></path>
+          <path class="tz" pathLength="1" stroke-width="2.6" d="M22 95C40 93 80 93 98 95C98 101 96 104 92 108C86 116 84 126 84 146M30 146C30 126 28 116 26 108C22 103 22 99 22 95"></path>
+          <path class="tz" pathLength="1" stroke-width="2.6" d="M92 110C98 114 100 120 98 126L96 146M88 120L89 146"></path>
+          <path class="tz" pathLength="1" stroke-width="2.6" d="M20 50C14 66 12 86 14 104C16 116 20 124 24 128"></path>
+          <path class="tz" pathLength="1" stroke-width="2.6" d="M100 50C106 66 108 84 106 100"></path></svg>
           <h3>La rodilla</h3>
           <p>Recibe el giro que viene de abajo. Aparece la molestia al subir escaleras o al día siguiente de caminar de más.</p>
         </article>
 
         <article class="dcard" data-i="3">
           <div class="dcard-n">04</div>
-          <svg class="hueso" viewBox="0 0 120 150" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path class="tz" pathLength="1" d="M20 30c26-16 56-4 54 26-2 20-32 28-50 15C10 60 8 38 20 30z"/><path class="tz" pathLength="1" d="M32 74c5 15 20 19 27 10"/><circle class="tz" pathLength="1" cx="82" cy="68" r="13"/><path class="tz" pathLength="1" stroke-width="5" d="M91 78l8 14"/><path class="tz" pathLength="1" stroke-width="6" d="M99 92v44"/></g></svg>
+          <svg class="hueso" viewBox="0 0 120 150" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="tz" pathLength="1" stroke-width="2.6" d="M36 8C36 22 32 32 30 40C24 54 18 68 18 84C18 104 22 124 26 146"></path>
+          <path class="tz" pathLength="1" stroke-width="2.6" d="M84 8C84 22 88 32 90 40C96 54 102 68 102 84C102 104 98 124 94 146"></path>
+          <path class="tz" pathLength="1" stroke-width="2.6" d="M60 30C59 33 59 35 60 37"></path>
+          <path class="tz" pathLength="1" stroke-width="2.6" d="M26 50C44 55 76 55 94 50"></path>
+          <path class="tz" pathLength="1" stroke-width="2.6" d="M19 74C34 76 48 86 60 94C72 86 86 76 101 74"></path>
+          <path class="tz" pathLength="1" stroke-width="2.6" d="M60 94L60 146"></path>
+          <path class="tz" pathLength="1" stroke-width="2.2" d="M24 36L20 45M15 55L11 65M9 75L8 87M8 97L10 109M12 119L14 129M16 139L17 146"></path>
+          <path class="tz" pathLength="1" stroke-width="2.2" d="M96 36L100 45M105 55L109 65M111 75L112 87M112 97L110 109M108 119L106 129M104 139L103 146"></path>
+          <path class="tz" pathLength="1" stroke-width="2.2" d="M2 22L18 22M12 16L18 22L12 28"></path>
+          <path class="tz" pathLength="1" stroke-width="2.2" d="M118 22L102 22M108 16L102 22L108 28"></path></svg>
           <h3>La cadera</h3>
           <p>Se desnivela para mantenerte derecho. Un lado trabaja más que el otro, todos los días, durante años.</p>
         </article>
 
         <article class="dcard" data-i="4">
           <div class="dcard-n">05</div>
-          <svg class="hueso" viewBox="0 0 120 150" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><ellipse class="tz" pathLength="1" cx="68" cy="30" rx="17" ry="8.5"/><path class="tz" pathLength="1" d="M51 32 32 40"/><ellipse class="tz" pathLength="1" cx="63" cy="58" rx="17" ry="8.5"/><path class="tz" pathLength="1" d="M46 60 27 68"/><ellipse class="tz" pathLength="1" cx="61" cy="86" rx="17" ry="8.5"/><path class="tz" pathLength="1" d="M44 88 25 96"/><ellipse class="tz" pathLength="1" cx="64" cy="114" rx="17" ry="8.5"/><path class="tz" pathLength="1" d="M47 116 28 124"/><path class="tz" pathLength="1" d="M78 40v8"/><path class="tz" pathLength="1" d="M76 68v8"/><path class="tz" pathLength="1" d="M76 96v8"/><path class="tz" pathLength="1" d="M56 128c6 10 18 10 22 0"/></g></svg>
+          <img class="hueso hueso-img" src="assets/espalda.png" alt="" aria-hidden="true">
           <h3>La espalda</h3>
           <p>El último eslabón. La columna termina corrigiendo lo que nadie corrigió abajo, y ahí es donde por fin duele.</p>
         </article>
