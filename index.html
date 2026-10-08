@@ -173,12 +173,18 @@ a:focus-visible,button:focus-visible,summary:focus-visible{
 .paso-n{font-family:'Barlow Condensed',sans-serif;font-size:2.6rem;font-weight:700;color:var(--azul-300);line-height:1}
 
 /* huella con zonas de presión */
-.huella{filter:drop-shadow(0 16px 34px rgba(31,58,147,.22))}
-.zona{transform-box:fill-box;transform-origin:center;animation:zpulse 3.4s var(--ease) infinite}
-.zona:nth-child(4){animation-delay:.55s}
-.zona:nth-child(5){animation-delay:1.1s}
-@keyframes zpulse{0%,100%{opacity:.30}50%{opacity:.85}}
-@media (prefers-reduced-motion:reduce){ .zona{animation:none;opacity:.6} }
+.huella{width:100%;max-width:268px;height:auto;display:block;margin-inline:auto;
+  filter:drop-shadow(0 18px 38px rgba(31,58,147,.20))}
+.zona{transform-box:fill-box;transform-origin:center;animation:zpulse 3.6s var(--ease) infinite}
+.zona:nth-child(2){animation-delay:.6s}
+.zona:nth-child(3){animation-delay:1.2s}
+.zonas-nucleo .zona{opacity:.9}
+@keyframes zpulse{0%,100%{opacity:.62;transform:scale(.97)}50%{opacity:1;transform:scale(1.04)}}
+@media (prefers-reduced-motion:reduce){ .zona{animation:none;opacity:.75;transform:none} }
+.leyenda-carga{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:18px;
+  margin:20px 0 0;padding:0;font-size:.86rem;color:var(--gris)}
+.leyenda-carga li{display:flex;align-items:center;gap:7px}
+.leyenda-carga span{width:10px;height:10px;border-radius:50%;flex:0 0 auto}
 
 /* ---------- precios ---------- */
 .precio{border:1px solid var(--linea);border-radius:var(--r);padding:26px 24px;background:#fff;
@@ -634,27 +640,21 @@ a:focus-visible,button:focus-visible,summary:focus-visible{
 
       <!-- huella con zonas de presión -->
       <div class="rv" aria-hidden="true" style="display:grid;place-items:center">
-        <svg class="huella" width="250" height="380" viewBox="0 0 220 336" role="presentation">
-          <defs><linearGradient id="gp" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#2E63E8"/><stop offset="100%" stop-color="#0B2A6B"/>
-          </linearGradient></defs>
-          <g fill="url(#gp)" opacity=".14">
-            <path d="M110 86c34 0 50 24 48 54-2 26-12 42-12 64s14 40 12 62c-3 28-22 42-46 42s-42-14-44-42c-2-24 10-40 10-64s-12-38-14-62c-2-30 12-54 46-54z"/>
-            <ellipse cx="80" cy="62" rx="18" ry="20"/><ellipse cx="112" cy="58" rx="12.5" ry="14"/>
-            <ellipse cx="134" cy="62" rx="11" ry="12"/><ellipse cx="151" cy="70" rx="9.5" ry="10.5"/>
-            <ellipse cx="164" cy="81" rx="8" ry="9"/>
+        <svg class="huella" viewBox="0 0 120 162" role="presentation">
+          <defs><radialGradient id="zc0"><stop offset="0%" stop-color="#2450C8" stop-opacity=".8"/><stop offset="55%" stop-color="#2450C8" stop-opacity=".26"/><stop offset="100%" stop-color="#2450C8" stop-opacity="0"/></radialGradient><radialGradient id="zc1"><stop offset="0%" stop-color="#2E63E8" stop-opacity=".8"/><stop offset="55%" stop-color="#2E63E8" stop-opacity=".26"/><stop offset="100%" stop-color="#2E63E8" stop-opacity="0"/></radialGradient><radialGradient id="zc2"><stop offset="0%" stop-color="#1F3A93" stop-opacity=".8"/><stop offset="55%" stop-color="#1F3A93" stop-opacity=".26"/><stop offset="100%" stop-color="#1F3A93" stop-opacity="0"/></radialGradient></defs>
+          <g fill="none" stroke="#1F3A93" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M44 50C52 38 72 36 84 44C92 50 92 62 90 74C88 88 84 100 84 112C84 126 80 140 66 142C52 144 44 132 44 118C44 104 50 92 46 80C42 68 38 58 44 50Z"/>
+            <path stroke-width="2.2" d="M36 28a6 8 0 1 0 12 0a6 8 0 1 0-12 0ZM50.5 20a5.5 6.5 0 1 0 11 0a5.5 6.5 0 1 0-11 0ZM64 17a5 5.5 0 1 0 10 0a5 5.5 0 1 0-10 0ZM76.8 20a4.2 5 0 1 0 8.4 0a4.2 5 0 1 0-8.4 0ZM87.4 28a3.6 4.2 0 1 0 7.2 0a3.6 4.2 0 1 0-7.2 0Z"/>
           </g>
-          <g fill="none" stroke="url(#gp)" stroke-width="2.6">
-            <path d="M110 86c34 0 50 24 48 54-2 26-12 42-12 64s14 40 12 62c-3 28-22 42-46 42s-42-14-44-42c-2-24 10-40 10-64s-12-38-14-62c-2-30 12-54 46-54z"/>
-            <ellipse cx="80" cy="62" rx="18" ry="20"/><ellipse cx="112" cy="58" rx="12.5" ry="14"/>
-            <ellipse cx="134" cy="62" rx="11" ry="12"/><ellipse cx="151" cy="70" rx="9.5" ry="10.5"/>
-            <ellipse cx="164" cy="81" rx="8" ry="9"/>
-          </g>
-          <ellipse class="zona" cx="110" cy="116" rx="40" ry="24" fill="#2E63E8"/>
-          <ellipse class="zona" cx="140" cy="184" rx="17" ry="28" fill="#2E63E8"/>
-          <ellipse class="zona" cx="112" cy="266" rx="36" ry="32" fill="#2E63E8"/>
+          <g class="zonas"><ellipse class="zona" cx="67" cy="64" rx="30" ry="19" fill="url(#zc0)"/><ellipse class="zona" cx="76" cy="96" rx="14" ry="24" fill="url(#zc1)"/><ellipse class="zona" cx="64" cy="125" rx="27" ry="22" fill="url(#zc2)"/></g>
+          <g class="zonas-nucleo"><ellipse class="zona" cx="67" cy="64" rx="11" ry="6.5" fill="#2450C8"/><ellipse class="zona" cx="76" cy="96" rx="5" ry="8.5" fill="#2E63E8"/><ellipse class="zona" cx="64" cy="125" rx="10" ry="7.5" fill="#1F3A93"/></g>
         </svg>
-        <p style="color:var(--gris);font-size:.86rem;margin-top:8px">Zonas de carga que evalúa el estudio</p>
+        <ul class="leyenda-carga">
+          <li><span style="background:#2450C8"></span>Antepié</li>
+          <li><span style="background:#2E63E8"></span>Mediopié</li>
+          <li><span style="background:#1F3A93"></span>Talón</li>
+        </ul>
+        <p style="color:var(--gris);font-size:.86rem;margin-top:14px;text-align:center">Las zonas de carga que mide el estudio de pisada</p>
       </div>
     </div>
 
@@ -841,9 +841,10 @@ a:focus-visible,button:focus-visible,summary:focus-visible{
               <span class="dot" id="dot2"></span><span id="estado2">—</span>
             </span>
           </div>
+          <div class="hr-cab" aria-hidden="true"><span></span><span>Mañana</span><span>Tarde</span></div>
           <div id="tabla-horario" style="display:grid;gap:0"></div>
           <p style="color:var(--gris);font-size:.9rem;margin:18px 0 0;padding-top:16px;border-top:1px solid var(--linea)">
-            Domingo cerrado. En días festivos confirma por WhatsApp.
+            En días festivos confirma por WhatsApp antes de venir.
           </p>
         </div>
       </div>
@@ -923,9 +924,29 @@ a:focus-visible,button:focus-visible,summary:focus-visible{
   .hero{padding-top:104px}
 }
 @media(max-width:430px){ .wm-sec{display:none} }
-.hr-fila{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid var(--linea)}
+/* tabla de horarios: el día y sus dos turnos en columnas que alinean */
+.hr-cab{display:none;gap:10px;padding:0 12px 8px;
+  font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gris)}
+.hr-fila{display:grid;gap:3px 10px;padding:11px 12px;border-radius:12px;
+  grid-template-columns:1fr 1fr;grid-template-areas:"dia dia" "man tar";
+  border-bottom:1px solid var(--linea)}
 .hr-fila:last-child{border-bottom:0}
-.hr-fila.hoy{color:var(--azul);font-weight:700}
+.hr-dia{grid-area:dia;font-weight:600}
+.hr-man{grid-area:man}
+.hr-tar{grid-area:tar}
+.hr-man,.hr-tar{color:var(--gris);font-variant-numeric:tabular-nums;white-space:nowrap}
+.hr-cerrado{grid-area:man/man/tar/tar;color:var(--gris)}
+.hr-vacio{color:var(--azul-300)}
+@media(min-width:420px){
+  .hr-cab{display:grid;grid-template-columns:5.2rem 1fr 1fr}
+  .hr-cab span:first-child{grid-column:1}
+  .hr-fila{grid-template-columns:5.2rem 1fr 1fr;grid-template-areas:"dia man tar";align-items:center}
+}
+/* el día de hoy se despega del resto */
+.hr-fila.hoy{background:var(--azul-100);border-bottom-color:transparent;
+  box-shadow:inset 3px 0 0 var(--azul)}
+.hr-fila.hoy .hr-dia{color:var(--azul)}
+.hr-fila.hoy .hr-man,.hr-fila.hoy .hr-tar{color:var(--azul);font-weight:600}
 </style>
 
 <script>
@@ -975,9 +996,12 @@ a:focus-visible,button:focus-visible,summary:focus-visible{
     var h = Math.floor(m/60), mm = m%60;
     var ap = h >= 12 ? 'pm' : 'am';
     var h12 = h % 12; if (h12 === 0) h12 = 12;
-    return h12 + ':' + (mm<10?'0':'') + mm + ' ' + ap;
+    // en punto no hace falta el ':00'; así las horas no se parten en móvil
+    return mm === 0 ? (h12 + ' ' + ap) : (h12 + ':' + (mm<10?'0':'') + mm + ' ' + ap);
   }
   function rango(r){ return hhmm(r[0]) + ' – ' + hhmm(r[1]); }
+
+  function esc(t){ return String(t).replace(/[&<>]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]; }); }
 
   function pintarEstado(){
     var ahora = new Date();
@@ -986,7 +1010,10 @@ a:focus-visible,button:focus-visible,summary:focus-visible{
 
     var txt;
     if (abierto) {
-      txt = 'Abierto ahora';
+      // decir hasta qué hora es más útil que un simple "abierto"
+      var cierra = null;
+      (HORARIO[d] || []).forEach(function(r){ if (min >= r[0] && min < r[1]) cierra = r[1]; });
+      txt = cierra !== null ? ('Abierto · cierra ' + hhmm(cierra)) : 'Abierto ahora';
     } else {
       // siguiente apertura
       var prox = null;
@@ -1018,8 +1045,18 @@ a:focus-visible,button:focus-visible,summary:focus-visible{
     var html = '';
     [1,2,3,4,5,6,0].forEach(function(d){
       var rs = HORARIO[d] || [];
-      var val = rs.length ? rs.map(rango).join('  ·  ') : 'Cerrado';
-      html += '<div class="hr-fila' + (d === hoy ? ' hoy' : '') + '"><span>' + DIAS[d] + '</span><span>' + val + '</span></div>';
+      var esHoy = (d === hoy);
+      var celdas;
+      if (!rs.length){
+        celdas = '<span class="hr-cerrado">Cerrado</span>';
+      } else {
+        celdas = '<span class="hr-man">' + rango(rs[0]) + '</span>' +
+                 '<span class="hr-tar' + (rs[1] ? '' : ' hr-vacio') + '">' +
+                 (rs[1] ? rango(rs[1]) : '—') + '</span>';
+      }
+      html += '<div class="hr-fila' + (esHoy ? ' hoy' : '') + '">' +
+                '<span class="hr-dia">' + esc(DIAS[d]) + '</span>' + celdas +
+              '</div>';
     });
     cont.innerHTML = html;
   }
